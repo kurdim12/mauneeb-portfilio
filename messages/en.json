@@ -27,7 +27,7 @@
     "eyebrow": "Selected work",
     "title": "Concepts I",
     "title_accent": "made work.",
-    "intro": "Twelve rooms across Jordan — from first sketch to the morning the doors opened. I don't own them. I make them work.",
+    "intro": "Thirteen rooms across Jordan — from first sketch to the morning the doors opened. I don't own them. I make them work.",
     "engagement_full": "Full Concept Build",
     "engagement_training": "Training Only",
     "scope_label": "Every build, end to end",
@@ -40,6 +40,12 @@
     "prev": "Previous photo",
     "next": "Next photo",
     "close": "Close"
+  },
+  "craft": {
+    "eyebrow": "The Craft",
+    "title": "Competition-level latte art,",
+    "title_accent": "every single cup.",
+    "intro": "Eleven years of muscle memory behind the bar. The standard I hold myself to is the standard I train every team toward."
   },
   "teaching": {
     "eyebrow": "Teaching",
@@ -61,7 +67,7 @@
     "eyebrow": "About",
     "title": "I work behind the bar, not on the lease.",
     "p1": "Eleven years in specialty coffee taught me that a great café is engineered, not stumbled into. I'm the person owners bring in before the espresso machine is even chosen.",
-    "p2": "I've shaped the concept, equipment, menu, and team for twelve cafés across Jordan, and I've trained baristas at three national institutions. Along the way I became Jordan's Latte Art Champion — a title that still keeps me honest behind the bar.",
+    "p2": "I've shaped the concept, equipment, menu, and team for thirteen cafés across Jordan, and I've trained baristas at three national institutions. Along the way I became Jordan's Latte Art Champion — a title that still keeps me honest behind the bar.",
     "p3": "I have no intention of opening a café. I have every intention of making yours work."
   },
   "store": {
@@ -78,10 +84,19 @@
     "subtitle": "New concept, struggling bar, or a team that needs training — start here.",
     "email": "Email",
     "whatsapp": "WhatsApp",
-    "instagram": "Instagram"
+    "instagram": "Instagram",
+    "form_name": "Your name",
+    "form_type": "What do you need?",
+    "type_concept": "A new concept",
+    "type_fix": "Fix a struggling bar",
+    "type_training": "Train my team",
+    "type_other": "Something else",
+    "form_message": "Tell me about it",
+    "form_send": "Send via WhatsApp",
+    "form_alt": "Or reach out directly"
   },
   "footer": {
-    "tagline": "I build coffee shops that outlive the trend.",
+    "tagline": "I build coffee concepts that outlive the trend.",
     "rights": "All rights reserved."
   }
 }

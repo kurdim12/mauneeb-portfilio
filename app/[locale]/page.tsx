@@ -8,6 +8,7 @@ import Marquee from '@/components/Marquee';
 import Work from '@/components/Work';
 import Teaching from '@/components/Teaching';
 import About from '@/components/About';
+import Craft from '@/components/Craft';
 import Store from '@/components/Store';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -30,6 +31,7 @@ export default async function Home({
         <Work />
         <Teaching />
         <About />
+        <Craft />
         <Store />
         <Contact />
       </main>

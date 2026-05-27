@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { contact } from '@/src/data/content';
 import Reveal from './Reveal';
+import ContactForm from './ContactForm';
 
 export default function Contact() {
   const t = useTranslations('contact');
@@ -38,22 +39,30 @@ export default function Contact() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 border-t border-sand/15 md:grid-cols-3">
-          {channels.map((ch, i) => (
-            <Reveal key={ch.label} delay={i * 0.1}>
-              <a
-                href={ch.href}
-                target={ch.href.startsWith('http') ? '_blank' : undefined}
-                rel={ch.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="group block border-b border-sand/15 px-0 py-8 transition-colors duration-300 hover:bg-deep-olive md:border-b-0 md:border-r md:px-8 md:py-12 md:first:pl-0 md:last:border-r-0 md:last:pr-0 rtl:md:border-l rtl:md:border-r-0 rtl:md:last:border-l-0"
-              >
-                <p className="eyebrow mb-3 text-sage">{ch.label}</p>
-                <p className="font-serif text-2xl font-light text-sand transition-opacity group-hover:opacity-90">
-                  {ch.value}
-                </p>
-              </a>
-            </Reveal>
-          ))}
+        <div className="mt-16 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20">
+          <Reveal>
+            <ContactForm />
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="eyebrow mb-2">{t('form_alt')}</p>
+            <div className="divide-y divide-sand/15 border-t border-sand/15">
+              {channels.map((ch) => (
+                <a
+                  key={ch.label}
+                  href={ch.href}
+                  target={ch.href.startsWith('http') ? '_blank' : undefined}
+                  rel={ch.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="group -mx-4 flex items-baseline justify-between gap-4 px-4 py-6 transition-colors duration-300 hover:bg-deep-olive"
+                >
+                  <span className="eyebrow text-sage">{ch.label}</span>
+                  <span className="font-serif text-xl font-light text-sand transition-opacity group-hover:opacity-90">
+                    {ch.value}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

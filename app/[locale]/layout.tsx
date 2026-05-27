@@ -31,13 +31,20 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://muneeb.coffee'),
   title: 'Muneeb — Specialty Coffee Concept Builder & Trainer',
   description:
-    'I build coffee shops that outlive the trend. Specialty coffee concept builder and trainer based in Amman, Jordan.',
+    'I build coffee concepts that outlive the trend. Specialty coffee concept builder and trainer based in Amman, Jordan.',
   openGraph: {
     title: 'Muneeb — Specialty Coffee Concept Builder & Trainer',
-    description: 'I build coffee shops that outlive the trend.',
+    description: 'I build coffee concepts that outlive the trend.',
     type: 'website',
     locale: 'en',
     alternateLocale: 'ar',
+    images: [{ url: '/og.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Muneeb — Specialty Coffee Concept Builder & Trainer',
+    description: 'I build coffee concepts that outlive the trend.',
+    images: ['/og.png'],
   },
 };
 

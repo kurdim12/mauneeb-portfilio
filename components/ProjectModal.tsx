@@ -164,6 +164,10 @@ function ModalInner({
               {project.city[locale]} · {project.year}
             </p>
 
+            <p className="mt-6 text-base leading-relaxed text-charcoal/75">
+              {project.desc[locale]}
+            </p>
+
             <ul className="mt-8 space-y-3 border-t border-charcoal/10 pt-6">
               {scope.map((step, i) => (
                 <li
