@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion, useScroll } from 'framer-motion';
+import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import LangToggle from './LangToggle';
 
 const links = [
@@ -13,10 +13,13 @@ const links = [
   { id: 'contact', key: 'contact' },
 ] as const;
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export default function Nav() {
   const t = useTranslations('nav');
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>('');
+  const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
@@ -42,17 +45,21 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled ? 'bg-bone/80 backdrop-blur-md' : 'bg-transparent'
+        scrolled || open ? 'bg-bone/80 backdrop-blur-md' : 'bg-transparent'
       }`}
     >
       <nav className="container-x flex h-16 items-center justify-between md:h-20">
-        <a
-          href="#top"
-          className="group flex items-center gap-2.5 text-charcoal"
-        >
+        <a href="#top" className="group flex items-center gap-2.5 text-charcoal">
           <span className="flex h-7 w-7 items-center justify-center rounded-md bg-deep-olive font-serif text-base italic leading-none text-sage transition-transform duration-300 group-hover:-rotate-6">
             M
           </span>
@@ -82,13 +89,60 @@ export default function Nav() {
           ))}
         </div>
 
-        <LangToggle />
+        <div className="flex items-center gap-4">
+          <LangToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] md:hidden"
+          >
+            <span
+              className={`block h-px w-5 bg-charcoal transition-transform duration-300 ${
+                open ? 'translate-y-[3px] rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`block h-px w-5 bg-charcoal transition-transform duration-300 ${
+                open ? '-translate-y-[3px] -rotate-45' : ''
+              }`}
+            />
+          </button>
+        </div>
       </nav>
 
       <motion.div
         className="h-px origin-left bg-sage rtl:origin-right"
         style={{ scaleX: scrollYProgress }}
       />
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="overflow-hidden bg-bone/95 backdrop-blur-md md:hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: EASE }}
+          >
+            <div className="container-x flex flex-col py-4">
+              {links.map((link, i) => (
+                <motion.a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={() => setOpen(false)}
+                  className="border-b border-charcoal/10 py-4 font-serif text-2xl font-light text-charcoal last:border-b-0"
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.08 + i * 0.05, ease: EASE }}
+                >
+                  {t(link.key)}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
