@@ -35,7 +35,11 @@
     "scope_equipment": "Equipment",
     "scope_menu": "Menu",
     "scope_training": "Training",
-    "scope_launch": "Pre-launch"
+    "scope_launch": "Pre-launch",
+    "photos_soon": "Photos coming soon",
+    "prev": "Previous photo",
+    "next": "Next photo",
+    "close": "Close"
   },
   "teaching": {
     "eyebrow": "Teaching",

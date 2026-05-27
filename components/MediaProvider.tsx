@@ -21,3 +21,18 @@ export function MediaProvider({
 export function useImageAvailable(src: string) {
   return useContext(AvailableImagesContext).has(src);
 }
+
+/**
+ * All real photos for a project, sorted. Matches both a single
+ * /images/projects/<id>.jpg and a folder /images/projects/<id>/*.jpg.
+ */
+export function useProjectPhotos(id: string): string[] {
+  const set = useContext(AvailableImagesContext);
+  const single = `/images/projects/${id}`;
+  const folder = `/images/projects/${id}/`;
+  return [...set]
+    .filter((p) => p.startsWith(folder) || p.startsWith(`${single}.`))
+    .sort((a, b) =>
+      a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+    );
+}

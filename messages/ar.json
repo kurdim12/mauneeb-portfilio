@@ -35,7 +35,11 @@
     "scope_equipment": "المعدّات",
     "scope_menu": "المنيو",
     "scope_training": "التدريب",
-    "scope_launch": "ما قبل الافتتاح"
+    "scope_launch": "ما قبل الافتتاح",
+    "photos_soon": "الصور قريباً",
+    "prev": "الصورة السابقة",
+    "next": "الصورة التالية",
+    "close": "إغلاق"
   },
   "teaching": {
     "eyebrow": "التدريب",

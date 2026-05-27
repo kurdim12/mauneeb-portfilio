@@ -11,7 +11,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'barista',
-    name: { en: 'Barista', ar: 'باريستا' },
+    name: { en: 'La Barista', ar: 'لا باريستا' },
     city: { en: 'Amman', ar: 'عمّان' },
     engagement: 'full',
     year: 2016,
