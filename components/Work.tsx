@@ -14,14 +14,6 @@ export default function Work() {
   const locale = useLocale() as Locale;
   const [active, setActive] = useState<Project | null>(null);
 
-  const scope = [
-    t('scope_concept'),
-    t('scope_equipment'),
-    t('scope_menu'),
-    t('scope_training'),
-    t('scope_launch'),
-  ];
-
   return (
     <section id="work" className="bg-bone py-24 md:py-32">
       <div className="container-x">
@@ -43,28 +35,6 @@ export default function Work() {
           ))}
         </div>
 
-        <Reveal>
-          <div className="mt-20 border-t border-charcoal/10 pt-8">
-            <p className="eyebrow mb-6">{t('scope_label')}</p>
-            <ol className="flex flex-wrap items-center gap-x-3 gap-y-3 font-sans text-sm text-charcoal/70 md:gap-x-6">
-              {scope.map((step, i) => (
-                <li key={step} className="flex items-center gap-3 md:gap-6">
-                  <span className="flex items-center gap-2">
-                    <span className="font-serif text-sage">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    {step}
-                  </span>
-                  {i < scope.length - 1 && (
-                    <span className="text-charcoal/25" aria-hidden>
-                      &middot;
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </Reveal>
       </div>
 
       <ProjectModal project={active} onClose={() => setActive(null)} />

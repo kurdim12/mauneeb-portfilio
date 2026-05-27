@@ -41,6 +41,22 @@
     "next": "Next photo",
     "close": "Close"
   },
+  "approach": {
+    "eyebrow": "The Build",
+    "title": "From empty room",
+    "title_accent": "to opening day.",
+    "intro": "Every project runs the same disciplined path — no skipped steps, no guesswork.",
+    "concept_title": "Concept",
+    "concept_desc": "Position, identity, and the customer experience — settled before a single machine is bought.",
+    "equipment_title": "Equipment",
+    "equipment_desc": "The right grinders, machines, and bar layout, specced to the menu rather than the trend.",
+    "menu_title": "Menu",
+    "menu_desc": "A drink list engineered for consistency, speed, and margin.",
+    "training_title": "Training",
+    "training_desc": "Baristas taken from first shift to floor-ready, with standards that hold under pressure.",
+    "launch_title": "Pre-launch",
+    "launch_desc": "Dialed in, dress-rehearsed, and ready for the first real rush."
+  },
   "craft": {
     "eyebrow": "The Craft",
     "title": "Competition-level latte art,",

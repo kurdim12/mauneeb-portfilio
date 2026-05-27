@@ -1,23 +1,55 @@
 'use client';
 
+import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Media from './Media';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+function MaskLine({
+  children,
+  delay,
+  className,
+}: {
+  children: React.ReactNode;
+  delay: number;
+  className?: string;
+}) {
+  return (
+    <span className="block overflow-hidden pb-[0.08em]">
+      <motion.span
+        className={`block ${className ?? ''}`}
+        initial={{ y: '110%' }}
+        animate={{ y: '0%' }}
+        transition={{ duration: 1, ease: EASE, delay }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
 export default function Hero() {
   const t = useTranslations('hero');
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <section
+      ref={ref}
       id="top"
-      className="relative overflow-hidden bg-bone pt-32 pb-16 md:pt-44 md:pb-24"
+      className="relative flex min-h-[92vh] items-center overflow-hidden bg-bone pt-28 pb-16 md:min-h-screen md:pt-32"
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute -top-16 select-none font-serif leading-none text-sage/[0.06] ltr:right-0 rtl:left-0"
-        style={{ fontSize: 'clamp(18rem, 38vw, 34rem)' }}
+        className="pointer-events-none absolute -top-20 select-none font-serif leading-none text-sage/[0.06] ltr:right-0 rtl:left-0"
+        style={{ fontSize: 'clamp(20rem, 42vw, 40rem)' }}
       >
         &rdquo;
       </span>
@@ -26,38 +58,34 @@ export default function Hero() {
         <div className="md:col-span-7">
           <motion.p
             className="eyebrow mb-7"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
           >
             {t('eyebrow')}
           </motion.p>
 
-          <motion.h1
-            className="font-serif text-hero font-light text-charcoal"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.08 }}
-          >
-            {t('title_line1')}
-            <br />
-            <span className="italic text-sage">{t('title_line2')}</span>
-          </motion.h1>
+          <h1 className="font-serif text-hero font-light text-charcoal">
+            <MaskLine delay={0.15}>{t('title_line1')}</MaskLine>
+            <MaskLine delay={0.28} className="italic text-sage">
+              {t('title_line2')}
+            </MaskLine>
+          </h1>
 
           <motion.p
             className="mt-8 max-w-xl text-base leading-relaxed text-charcoal/70 md:text-lg"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.16 }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.5 }}
           >
             {t('subtitle')}
           </motion.p>
 
           <motion.div
             className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.24 }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.62 }}
           >
             <a
               href="#work"
@@ -80,32 +108,34 @@ export default function Hero() {
 
         <motion.div
           className="md:col-span-5"
-          initial={{ opacity: 0, scale: 1.02 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: EASE, delay: 0.2 }}
+          initial={{ clipPath: 'inset(100% 0 0 0)' }}
+          animate={{ clipPath: 'inset(0% 0 0 0)' }}
+          transition={{ duration: 1.2, ease: EASE, delay: 0.35 }}
         >
-          <Media
-            src="/images/hero.jpg"
-            alt="Muneeb behind the bar"
-            seed="hero"
-            initial="M"
-            priority
-            sizes="(max-width: 768px) 100vw, 40vw"
-            className="aspect-[4/5] w-full"
-            imgClassName="object-[20%_center]"
-          />
+          <motion.div style={{ y: imageY }} className="aspect-[4/5] w-full">
+            <Media
+              src="/images/hero.jpg"
+              alt="Muneeb behind the bar"
+              seed="hero"
+              initial="M"
+              priority
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="h-full w-full"
+              imgClassName="object-[20%_center] scale-110"
+            />
+          </motion.div>
         </motion.div>
       </div>
 
       <motion.div
-        className="container-x relative mt-16 flex items-center justify-between border-t border-charcoal/10 pt-6 font-sans text-xs uppercase tracking-eyebrow text-charcoal/45"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: EASE, delay: 0.5 }}
+        style={{ opacity: fade }}
+        className="container-x absolute inset-x-0 bottom-8 flex items-center justify-between font-sans text-xs uppercase tracking-eyebrow text-charcoal/45"
       >
         <span>{t('meta_location')}</span>
-        <span className="hidden sm:inline">{t('meta_discipline')}</span>
-        <span>{t('meta_availability')}</span>
+        <span className="hidden items-center gap-2 sm:flex">
+          <span className="h-8 w-px bg-charcoal/20" />
+          {t('meta_availability')}
+        </span>
       </motion.div>
     </section>
   );

@@ -51,9 +51,14 @@ export default function Nav() {
       <nav className="container-x flex h-16 items-center justify-between md:h-20">
         <a
           href="#top"
-          className="font-serif text-xl font-normal tracking-tight text-charcoal"
+          className="group flex items-center gap-2.5 text-charcoal"
         >
-          Muneeb
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-deep-olive font-serif text-base italic leading-none text-sage transition-transform duration-300 group-hover:-rotate-6">
+            M
+          </span>
+          <span className="font-serif text-xl font-normal tracking-tight">
+            Muneeb
+          </span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
