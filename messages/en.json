@@ -8,7 +8,7 @@
   },
   "hero": {
     "eyebrow": "Jordan · Latte Art Champion · 11 yrs",
-    "title_line1": "I build coffee shops",
+    "title_line1": "I build coffee concepts",
     "title_line2": "that outlive the trend.",
     "subtitle": "Specialty coffee concept builder and trainer based in Amman. I shape the parts customers never see — the menu, the machines, the people — so the room still works long after opening week.",
     "cta_primary": "See the work",
@@ -68,7 +68,9 @@
     "eyebrow": "Store",
     "title": "Coffee Tools & Essentials",
     "intro": "The same kit I spec for the bars I build — tampers, pitchers, scales, and the small tools that separate a good shot from a consistent one. Curated, nothing filler.",
-    "cta": "Browse the kit"
+    "cta": "Browse the kit",
+    "prev": "Previous photo",
+    "next": "Next photo"
   },
   "contact": {
     "eyebrow": "Contact",
