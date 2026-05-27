@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { motion, useScroll } from 'framer-motion';
 import LangToggle from './LangToggle';
 
 const links = [
@@ -15,6 +16,8 @@ const links = [
 export default function Nav() {
   const t = useTranslations('nav');
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string>('');
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -23,12 +26,26 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.getElementById(l.id))
+      .filter((el): el is HTMLElement => el !== null);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled
-          ? 'bg-bone/85 backdrop-blur-md'
-          : 'bg-transparent'
+        scrolled ? 'bg-bone/80 backdrop-blur-md' : 'bg-transparent'
       }`}
     >
       <nav className="container-x flex h-16 items-center justify-between md:h-20">
@@ -44,16 +61,29 @@ export default function Nav() {
             <a
               key={link.id}
               href={`#${link.id}`}
-              className="group relative font-sans text-sm text-charcoal/80 transition-colors hover:text-charcoal"
+              className={`group relative font-sans text-sm transition-colors ${
+                active === link.id
+                  ? 'text-charcoal'
+                  : 'text-charcoal/60 hover:text-charcoal'
+              }`}
             >
               {t(link.key)}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-sage transition-all duration-300 group-hover:w-full" />
+              <span
+                className={`absolute -bottom-1 left-0 h-px bg-sage transition-all duration-300 ${
+                  active === link.id ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}
+              />
             </a>
           ))}
         </div>
 
         <LangToggle />
       </nav>
+
+      <motion.div
+        className="h-px origin-left bg-sage rtl:origin-right"
+        style={{ scaleX: scrollYProgress }}
+      />
     </header>
   );
 }

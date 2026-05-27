@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import Reveal from './Reveal';
+import Media from './Media';
 
 export default function About() {
   const t = useTranslations('about');
@@ -11,20 +11,19 @@ export default function About() {
     <section id="about" className="bg-bone py-24 md:py-32">
       <div className="container-x grid items-center gap-12 md:grid-cols-12 md:gap-16">
         <Reveal className="md:col-span-5">
-          <div className="relative aspect-[3/4] w-full overflow-hidden bg-military-olive/20">
-            <Image
-              src="/images/about.jpg"
-              alt="Muneeb"
-              fill
-              sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-cover"
-            />
-          </div>
+          <Media
+            src="/images/about.jpg"
+            alt="Muneeb"
+            seed="about-portrait"
+            initial="M"
+            sizes="(max-width: 768px) 100vw, 40vw"
+            className="aspect-[3/4] w-full"
+          />
         </Reveal>
 
         <Reveal delay={0.1} className="md:col-span-7">
           <p className="eyebrow mb-5">{t('eyebrow')}</p>
-          <h2 className="font-serif text-3xl font-light leading-tight tracking-tight text-charcoal md:text-4xl">
+          <h2 className="font-serif text-h2 font-light text-charcoal">
             {t('title')}
           </h2>
           <div className="mt-8 space-y-5 text-base leading-relaxed text-charcoal/75">

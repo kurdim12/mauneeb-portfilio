@@ -28,9 +28,17 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://muneeb.coffee'),
   title: 'Muneeb — Specialty Coffee Concept Builder & Trainer',
   description:
     'I build coffee shops that outlive the trend. Specialty coffee concept builder and trainer based in Amman, Jordan.',
+  openGraph: {
+    title: 'Muneeb — Specialty Coffee Concept Builder & Trainer',
+    description: 'I build coffee shops that outlive the trend.',
+    type: 'website',
+    locale: 'en',
+    alternateLocale: 'ar',
+  },
 };
 
 export function generateStaticParams() {

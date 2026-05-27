@@ -3,15 +3,16 @@
 import { useTranslations } from 'next-intl';
 import { stats } from '@/src/data/content';
 import Reveal from './Reveal';
+import Counter from './Counter';
 
 export default function Stats() {
   const t = useTranslations('stats');
 
   const items = [
-    { value: String(stats.years), label: t('years'), accent: false },
-    { value: String(stats.cafes), label: t('cafes'), accent: false },
-    { value: String(stats.institutions), label: t('institutions'), accent: false },
-    { value: '#1', label: t('rank'), accent: true },
+    { value: stats.years, label: t('years'), accent: false },
+    { value: stats.cafes, label: t('cafes'), accent: false },
+    { value: stats.institutions, label: t('institutions'), accent: false },
+    { value: null, label: t('rank'), accent: true },
   ];
 
   return (
@@ -24,13 +25,13 @@ export default function Stats() {
             className="px-4 py-12 text-center md:py-16"
           >
             <div
-              className={`font-serif text-5xl font-light md:text-6xl ${
-                item.accent ? 'text-sage italic' : 'text-charcoal'
+              className={`font-serif text-stat font-light ${
+                item.accent ? 'italic text-sage' : 'text-charcoal'
               }`}
             >
-              {item.value}
+              {item.accent ? '#1' : <Counter to={item.value as number} />}
             </div>
-            <div className="mt-3 font-sans text-xs leading-snug text-charcoal/60">
+            <div className="mx-auto mt-4 max-w-[10rem] font-sans text-xs leading-snug text-charcoal/55">
               {item.label}
             </div>
           </Reveal>

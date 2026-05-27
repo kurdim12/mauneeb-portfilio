@@ -12,7 +12,10 @@
     "title_line2": "that outlive the trend.",
     "subtitle": "Specialty coffee concept builder and trainer based in Amman. I shape the parts customers never see — the menu, the machines, the people — so the room still works long after opening week.",
     "cta_primary": "See the work",
-    "cta_secondary": "Start a project"
+    "cta_secondary": "Start a project",
+    "meta_location": "Based in Amman, Jordan",
+    "meta_discipline": "Concept · Equipment · Menu · Training",
+    "meta_availability": "Taking projects for 2026"
   },
   "stats": {
     "years": "years in specialty coffee",
@@ -27,6 +30,7 @@
     "intro": "Twelve rooms across Jordan — from first sketch to the morning the doors opened. I don't own them. I make them work.",
     "engagement_full": "Full Concept Build",
     "engagement_training": "Training Only",
+    "scope_label": "Every build, end to end",
     "scope_concept": "Concept",
     "scope_equipment": "Equipment",
     "scope_menu": "Menu",

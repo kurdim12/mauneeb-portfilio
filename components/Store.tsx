@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import Reveal from './Reveal';
+import Media from './Media';
 
 export default function Store() {
   const t = useTranslations('store');
@@ -12,7 +12,7 @@ export default function Store() {
       <div className="container-x grid items-center gap-12 md:grid-cols-2 md:gap-16">
         <Reveal>
           <p className="eyebrow mb-5">{t('eyebrow')}</p>
-          <h2 className="font-serif text-3xl font-light leading-tight tracking-tight text-charcoal md:text-4xl">
+          <h2 className="font-serif text-h2 font-light text-charcoal">
             {t('title')}
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/70">
@@ -33,15 +33,14 @@ export default function Store() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="relative aspect-square w-full overflow-hidden bg-military-olive/20">
-            <Image
-              src="/images/store-1.jpg"
-              alt="Coffee tools and essentials"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
+          <Media
+            src="/images/store-1.jpg"
+            alt="Coffee tools and essentials"
+            seed="store-tools"
+            initial="&"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="aspect-square w-full"
+          />
         </Reveal>
       </div>
     </section>

@@ -30,7 +30,7 @@ export default function Contact() {
       <div className="container-x">
         <Reveal>
           <p className="eyebrow mb-5">{t('eyebrow')}</p>
-          <h2 className="max-w-2xl font-serif text-4xl font-light leading-tight tracking-tight text-sand md:text-5xl">
+          <h2 className="max-w-2xl font-serif text-h2 font-light text-sand">
             {t('title')}
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-sand/70">
