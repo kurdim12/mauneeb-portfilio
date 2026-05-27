@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "work": "Work",
+    "teaching": "Teaching",
+    "about": "About",
+    "store": "Store",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Jordan · Latte Art Champion · 11 yrs",
+    "title_line1": "I build coffee shops",
+    "title_line2": "that outlive the trend.",
+    "subtitle": "Specialty coffee concept builder and trainer based in Amman. I shape the parts customers never see — the menu, the machines, the people — so the room still works long after opening week.",
+    "cta_primary": "See the work",
+    "cta_secondary": "Start a project"
+  },
+  "stats": {
+    "years": "years in specialty coffee",
+    "cafes": "cafés built & shaped",
+    "institutions": "institutions trained",
+    "rank": "Jordan latte art"
+  },
+  "work": {
+    "eyebrow": "Selected work",
+    "title": "Concepts I",
+    "title_accent": "made work.",
+    "intro": "Twelve rooms across Jordan — from first sketch to the morning the doors opened. I don't own them. I make them work.",
+    "engagement_full": "Full Concept Build",
+    "engagement_training": "Training Only",
+    "scope_concept": "Concept",
+    "scope_equipment": "Equipment",
+    "scope_menu": "Menu",
+    "scope_training": "Training",
+    "scope_launch": "Pre-launch"
+  },
+  "teaching": {
+    "eyebrow": "Teaching",
+    "title": "Where I train the next bar.",
+    "intro": "Coffee outlives any single café when the skill is passed on. I build and deliver curricula for three Jordanian institutions.",
+    "courses": {
+      "bau_title": "Coffee Art & Science",
+      "bau_org": "Al-Balqa Applied University",
+      "bau_desc": "A full module on extraction theory, sensory training, and competition-level latte art for hospitality students.",
+      "jrf_title": "Specialty Barista Foundations",
+      "jrf_org": "Jordan River Foundation",
+      "jrf_desc": "Vocational barista training that turns first-time staff into floor-ready professionals.",
+      "jaa_title": "Hospitality Beverage Standards",
+      "jaa_org": "Jordan Academy for Aviation",
+      "jaa_desc": "Service and beverage standards built for high-volume, high-expectation environments."
+    }
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "I work behind the bar, not on the lease.",
+    "p1": "Eleven years in specialty coffee taught me that a great café is engineered, not stumbled into. I'm the person owners bring in before the espresso machine is even chosen.",
+    "p2": "I've shaped the concept, equipment, menu, and team for twelve cafés across Jordan, and I've trained baristas at three national institutions. Along the way I became Jordan's Latte Art Champion — a title that still keeps me honest behind the bar.",
+    "p3": "I have no intention of opening a café. I have every intention of making yours work."
+  },
+  "store": {
+    "eyebrow": "Store",
+    "title": "Coffee Tools & Essentials",
+    "intro": "The same kit I spec for the bars I build — tampers, pitchers, scales, and the small tools that separate a good shot from a consistent one. Curated, nothing filler.",
+    "cta": "Browse the kit"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's make the room work.",
+    "subtitle": "New concept, struggling bar, or a team that needs training — start here.",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram"
+  },
+  "footer": {
+    "tagline": "I build coffee shops that outlive the trend.",
+    "rights": "All rights reserved."
+  }
+}
