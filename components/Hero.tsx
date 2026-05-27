@@ -92,6 +92,7 @@ export default function Hero() {
             priority
             sizes="(max-width: 768px) 100vw, 40vw"
             className="aspect-[4/5] w-full"
+            imgClassName="object-[20%_center]"
           />
         </motion.div>
       </div>
