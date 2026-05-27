@@ -99,17 +99,6 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'kalshure',
-    name: { en: 'Kalshure Coffee', ar: 'كالشور كوفي' },
-    city: { en: 'Irbid', ar: 'إربد' },
-    engagement: 'full',
-    year: 2022,
-    desc: {
-      en: 'Set up the specialty bar and trained the team for a fast-growing Irbid café.',
-      ar: 'جهّزت البار المختص ودرّبت الفريق لكافيه سريع النمو بإربد.',
-    },
-  },
-  {
     id: 'te-ra',
     name: { en: 'Te Ra Coffee', ar: 'تي را كوفي' },
     city: { en: 'Amman', ar: 'عمّان' },
@@ -157,7 +146,7 @@ export const projects: Project[] = [
 
 export const stats = {
   years: 11,
-  cafes: 13,
+  cafes: 12,
   institutions: 3,
 };
 
