@@ -152,9 +152,9 @@ export const stats = {
 
 export const contact = {
   email: 'hello@muneeb.coffee',
-  whatsapp: '+962 7 9000 0000',
-  whatsappUrl: 'https://wa.me/962790000000',
-  whatsappNumber: '962790000000',
-  instagram: '@muneeb.coffee',
-  instagramUrl: 'https://instagram.com/muneeb.coffee',
+  whatsapp: '+962 7 8976 7641',
+  whatsappUrl: 'https://wa.me/962789767641',
+  whatsappNumber: '962789767641',
+  instagram: '@muneeb_e97',
+  instagramUrl: 'https://www.instagram.com/muneeb_e97',
 };
