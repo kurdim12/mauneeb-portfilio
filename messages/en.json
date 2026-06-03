@@ -43,6 +43,12 @@
     "next": "Next photo",
     "close": "Close"
   },
+  "manifesto": {
+    "eyebrow": "Manifesto",
+    "line1": "I don't own them.",
+    "line2": "I make them work.",
+    "note": "I'm not a café owner. I'm the person owners bring in before the espresso machine is even chosen. Twelve rooms later, that's still the only role I want."
+  },
   "status": {
     "at_bar": "At the bar in Amman",
     "replying_soon": "Replying within ~2h",

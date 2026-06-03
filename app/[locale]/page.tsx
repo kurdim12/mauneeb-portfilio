@@ -6,6 +6,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
 import Marquee from '@/components/Marquee';
+import Manifesto from '@/components/Manifesto';
 import Work from '@/components/Work';
 import Approach from '@/components/Approach';
 import Teaching from '@/components/Teaching';
@@ -30,6 +31,7 @@ export default async function Home({
       <main>
         <Hero />
         <Stats />
+        <Manifesto />
         <Marquee />
         <Work />
         <Approach />

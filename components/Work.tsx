@@ -1,85 +1,73 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from 'framer-motion';
 import { projects, type Project } from '@/src/data/content';
 import type { Locale } from '@/src/i18n';
-import Reveal from './Reveal';
 import Media from './Media';
 import ProjectModal from './ProjectModal';
 import SectionTag from './SectionTag';
+import Reveal from './Reveal';
 import { useProjectPhotos } from './MediaProvider';
 
-// Bento layout per project index: column span (lg) and aspect ratio.
-const bento: { col: string; aspect: string; lead?: boolean }[] = [
-  { col: 'lg:col-span-8', aspect: 'aspect-[4/3]', lead: true },
-  { col: 'lg:col-span-4', aspect: 'aspect-[4/5]' },
-  { col: 'lg:col-span-4', aspect: 'aspect-square' },
-  { col: 'lg:col-span-4', aspect: 'aspect-square' },
-  { col: 'lg:col-span-4', aspect: 'aspect-[4/5]' },
-  { col: 'lg:col-span-6', aspect: 'aspect-[16/10]' },
-  { col: 'lg:col-span-6', aspect: 'aspect-[16/10]' },
-  { col: 'lg:col-span-4', aspect: 'aspect-[4/5]' },
-  { col: 'lg:col-span-4', aspect: 'aspect-square' },
-  { col: 'lg:col-span-4', aspect: 'aspect-[4/5]' },
-  { col: 'lg:col-span-8', aspect: 'aspect-[16/9]' },
-  { col: 'lg:col-span-4', aspect: 'aspect-square' },
-];
-
 export default function Work() {
-  const t = useTranslations('work');
-  const locale = useLocale() as Locale;
   const [active, setActive] = useState<Project | null>(null);
 
   return (
-    <section id="work" className="bg-bone py-24 md:py-32">
-      <div className="container-x">
-        <Reveal>
-          <SectionTag index={1} label={t('eyebrow')} />
-          <h2 className="mt-8 max-w-3xl font-serif text-h2 font-light text-charcoal">
-            {t('title')}{' '}
-            <span className="italic text-sage">{t('title_accent')}</span>
-          </h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-charcoal/70">
-            {t('intro')}
-          </p>
-        </Reveal>
+    <div id="work">
+      <WorkMobile onOpen={setActive} />
+      <WorkDesktop onOpen={setActive} />
+      <ProjectModal project={active} onClose={() => setActive(null)} />
+    </div>
+  );
+}
 
-        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12 md:gap-6">
-          {projects.map((project, i) => {
-            const layout = bento[i] ?? bento[bento.length - 1];
-            return (
-              <Reveal
-                key={project.id}
-                delay={(i % 3) * 0.06}
-                className={layout.col}
-              >
-                <BentoCard
-                  project={project}
-                  aspect={layout.aspect}
-                  lead={!!layout.lead}
-                  onOpen={() => setActive(project)}
-                />
-              </Reveal>
-            );
-          })}
+/* ------------------------------ Mobile ------------------------------ */
+
+function WorkMobile({ onOpen }: { onOpen: (p: Project) => void }) {
+  const t = useTranslations('work');
+
+  return (
+    <section className="block bg-bone py-20 md:hidden">
+      <div className="container-x">
+        <SectionTag index={1} label={t('eyebrow')} />
+        <h2 className="mt-6 font-serif text-h2 font-light text-charcoal">
+          {t('title')}{' '}
+          <span className="italic text-sage">{t('title_accent')}</span>
+        </h2>
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-charcoal/70">
+          {t('intro')}
+        </p>
+        <div className="mt-12 space-y-14">
+          {projects.map((p, i) => (
+            <Reveal key={p.id} delay={0}>
+              <MobileProjectCard
+                project={p}
+                index={i}
+                onOpen={() => onOpen(p)}
+              />
+            </Reveal>
+          ))}
         </div>
       </div>
-
-      <ProjectModal project={active} onClose={() => setActive(null)} />
     </section>
   );
 }
 
-function BentoCard({
+function MobileProjectCard({
   project,
-  aspect,
-  lead,
+  index,
   onOpen,
 }: {
   project: Project;
-  aspect: string;
-  lead: boolean;
+  index: number;
   onOpen: () => void;
 }) {
   const t = useTranslations('work');
@@ -98,13 +86,9 @@ function BentoCard({
           alt={project.name[locale]}
           seed={project.id}
           initial={project.name[locale].charAt(0)}
-          sizes={
-            lead
-              ? '(max-width: 1024px) 100vw, 66vw'
-              : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-          }
-          className={`${aspect} w-full`}
-          imgClassName="transition-transform duration-[900ms] ease-expo group-hover:scale-[1.04]"
+          sizes="100vw"
+          className="aspect-[4/5] w-full"
+          imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
         />
         <span className="absolute left-3 top-3 bg-bone/90 px-3 py-1.5 font-sans text-[10px] uppercase tracking-eyebrow text-charcoal backdrop-blur-sm rtl:left-auto rtl:right-3">
           {project.engagement === 'full'
@@ -116,40 +100,180 @@ function BentoCard({
             {photos.length}
           </span>
         )}
+      </div>
+      <p className="eyebrow mt-5 text-charcoal/35">
+        N°.{String(index + 1).padStart(3, '0')}
+      </p>
+      <h3 className="mt-1 font-serif text-3xl font-normal text-charcoal">
+        {project.name[locale]}
+      </h3>
+      <p className="mt-1 font-sans text-xs uppercase tracking-eyebrow text-charcoal/50">
+        {project.city[locale]} · {project.year}
+      </p>
+      <p className="mt-3 max-w-md text-sm leading-relaxed text-charcoal/65">
+        {project.desc[locale]}
+      </p>
+    </button>
+  );
+}
 
-        {/* Hover overlay with view CTA */}
-        <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-charcoal/60 via-charcoal/0 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-          <span className="m-4 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-eyebrow text-bone">
-            {t('view')}
-            <span className="rtl:rotate-180">&rarr;</span>
-          </span>
+/* ------------------------------ Desktop ----------------------------- */
+
+function WorkDesktop({ onOpen }: { onOpen: (p: Project) => void }) {
+  const t = useTranslations('work');
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end end'],
+  });
+
+  // 12 panels × 80vw + 11 × 4vw + 10vw L padding + 10vw R padding = 1024vw
+  // Translate from 0 to -(1024 - 100) = -924vw
+  const x = useTransform(scrollYProgress, [0.04, 0.96], ['0vw', '-924vw']);
+
+  return (
+    <section
+      ref={ref}
+      className="relative hidden bg-bone md:block"
+      style={{ height: `${projects.length * 60}vh` }}
+    >
+      <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+        <div className="container-x relative z-10 pt-28 md:pt-32">
+          <SectionTag index={1} label={t('eyebrow')} />
+          <div className="mt-6 grid grid-cols-12 items-baseline gap-8">
+            <h2 className="col-span-12 max-w-2xl font-serif text-h2 font-light text-charcoal lg:col-span-7">
+              {t('title')}{' '}
+              <span className="italic text-sage">{t('title_accent')}</span>
+            </h2>
+            <p className="col-span-12 max-w-md text-base leading-relaxed text-charcoal/65 lg:col-span-5">
+              {t('intro')}
+            </p>
+          </div>
         </div>
+
+        <motion.div
+          style={{ x }}
+          className="mt-12 flex flex-1 items-center gap-[4vw] pl-[10vw] pr-[10vw] rtl:flex-row-reverse"
+        >
+          {projects.map((p, i) => (
+            <DesktopPanel
+              key={p.id}
+              project={p}
+              index={i}
+              onOpen={() => onOpen(p)}
+            />
+          ))}
+        </motion.div>
+
+        <PanelIndicator progress={scrollYProgress} total={projects.length} />
+      </div>
+    </section>
+  );
+}
+
+function DesktopPanel({
+  project,
+  index,
+  onOpen,
+}: {
+  project: Project;
+  index: number;
+  onOpen: () => void;
+}) {
+  const t = useTranslations('work');
+  const locale = useLocale() as Locale;
+  const photos = useProjectPhotos(project.id);
+  const cardSrc = photos[0] ?? `/images/projects/${project.id}.jpg`;
+
+  return (
+    <button
+      onClick={onOpen}
+      className="group flex w-[80vw] shrink-0 items-center gap-10 text-left rtl:text-right"
+    >
+      {/* Image side */}
+      <div className="w-[56%]">
+        <Media
+          src={cardSrc}
+          alt={project.name[locale]}
+          seed={project.id}
+          initial={project.name[locale].charAt(0)}
+          sizes="50vw"
+          className="aspect-[5/6] w-full"
+          imgClassName="transition-transform duration-[1100ms] ease-expo group-hover:scale-[1.04]"
+        />
       </div>
 
-      <div
-        className={`mt-4 flex items-baseline justify-between gap-3 ${
-          lead ? 'lg:mt-5' : ''
-        }`}
-      >
+      {/* Text side */}
+      <div className="w-[44%]">
+        <p className="font-sans text-[11px] uppercase tracking-eyebrow text-charcoal/35">
+          N°.{String(index + 1).padStart(3, '0')}
+        </p>
         <h3
-          className={`font-serif font-normal text-charcoal transition-colors group-hover:text-sage ${
-            lead ? 'text-3xl md:text-4xl' : 'text-2xl'
-          }`}
+          className="mt-3 font-serif font-light leading-[0.92] text-charcoal transition-colors duration-500 group-hover:text-sage"
+          style={{
+            fontSize: 'clamp(3rem, 5.5vw, 6rem)',
+            letterSpacing: '-0.025em',
+          }}
         >
           {project.name[locale]}
         </h3>
-        <span className="font-sans text-xs tabular-nums text-charcoal/40">
-          {project.year}
-        </span>
-      </div>
-      <p className="mt-1 font-sans text-xs uppercase tracking-eyebrow text-charcoal/50">
-        {project.city[locale]}
-      </p>
-      {lead && (
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-charcoal/65">
+        <p className="mt-5 font-sans text-xs uppercase tracking-eyebrow text-charcoal/55">
+          {project.city[locale]} · {project.year} ·{' '}
+          {project.engagement === 'full'
+            ? t('engagement_full')
+            : t('engagement_training')}
+        </p>
+        <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/65">
           {project.desc[locale]}
         </p>
-      )}
+        <span className="mt-7 inline-flex items-center gap-2 font-sans text-sm text-charcoal">
+          <span className="relative">
+            {t('view')}
+            <span className="absolute -bottom-1 left-0 h-px w-full bg-charcoal transition-transform duration-300 group-hover:bg-sage" />
+          </span>
+          <span className="text-sage transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">
+            &rarr;
+          </span>
+        </span>
+      </div>
     </button>
+  );
+}
+
+function PanelIndicator({
+  progress,
+  total,
+}: {
+  progress: MotionValue<number>;
+  total: number;
+}) {
+  const [idx, setIdx] = useState(0);
+  const mapped = useTransform(progress, [0.04, 0.96], [0, total - 1]);
+
+  useMotionValueEvent(mapped, 'change', (v) => {
+    setIdx(Math.min(total - 1, Math.max(0, Math.round(v))));
+  });
+
+  return (
+    <div className="absolute bottom-8 left-0 right-0 z-10">
+      <div className="container-x flex items-end justify-between gap-6 font-sans text-xs uppercase tracking-eyebrow text-charcoal/45">
+        <div className="flex items-baseline gap-3">
+          <span className="font-serif text-3xl font-light leading-none text-charcoal tabular-nums">
+            {String(idx + 1).padStart(2, '0')}
+          </span>
+          <span>/</span>
+          <span className="tabular-nums">{String(total).padStart(2, '0')}</span>
+        </div>
+        <div className="relative h-px w-40 bg-charcoal/15 md:w-72">
+          <motion.span
+            className="absolute inset-y-0 left-0 bg-sage"
+            style={{
+              width: useTransform(progress, [0, 1], ['0%', '100%']),
+            }}
+          />
+        </div>
+        <span>scroll &rarr;</span>
+      </div>
+    </div>
   );
 }

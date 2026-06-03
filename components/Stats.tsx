@@ -8,34 +8,58 @@ import Counter from './Counter';
 export default function Stats() {
   const t = useTranslations('stats');
 
-  const items = [
-    { value: stats.years, label: t('years'), accent: false },
-    { value: stats.cafes, label: t('cafes'), accent: false },
-    { value: stats.institutions, label: t('institutions'), accent: false },
-    { value: null, label: t('rank'), accent: true },
-  ];
-
   return (
-    <section className="border-y border-charcoal/10 bg-bone">
-      <div className="container-x grid grid-cols-2 divide-x divide-charcoal/10 md:grid-cols-4 rtl:divide-x-reverse">
-        {items.map((item, i) => (
-          <Reveal
-            key={item.label}
-            delay={i * 0.08}
-            className="px-4 py-12 text-center md:py-16"
-          >
-            <div
-              className={`font-serif text-stat font-light ${
-                item.accent ? 'italic text-sage' : 'text-charcoal'
-              }`}
-            >
-              {item.accent ? '#1' : <Counter to={item.value as number} />}
-            </div>
-            <div className="mx-auto mt-4 max-w-[10rem] font-sans text-xs leading-snug text-charcoal/55">
-              {item.label}
+    <section className="border-y border-charcoal/10 bg-bone py-20 md:py-28">
+      <div className="container-x grid grid-cols-12 items-center gap-y-10 md:gap-8">
+        {/* Left meta */}
+        <div className="col-span-12 space-y-8 md:col-span-3 md:space-y-10">
+          <Reveal>
+            <div>
+              <p className="font-serif text-4xl font-light text-charcoal md:text-5xl">
+                <Counter to={stats.years} />
+              </p>
+              <p className="mt-2 font-sans text-[11px] uppercase tracking-eyebrow text-charcoal/50">
+                {t('years')}
+              </p>
             </div>
           </Reveal>
-        ))}
+          <Reveal delay={0.1}>
+            <div>
+              <p className="font-serif text-4xl font-light text-charcoal md:text-5xl">
+                <Counter to={stats.institutions} />
+              </p>
+              <p className="mt-2 font-sans text-[11px] uppercase tracking-eyebrow text-charcoal/50">
+                {t('institutions')}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Monumental center number */}
+        <Reveal delay={0.15} className="col-span-12 text-center md:col-span-6">
+          <p
+            className="font-serif font-light leading-[0.82] text-charcoal"
+            style={{
+              fontSize: 'clamp(9rem, 22vw, 22rem)',
+              letterSpacing: '-0.05em',
+            }}
+          >
+            <Counter to={stats.cafes} />
+          </p>
+          <p className="mt-4 font-sans text-xs uppercase tracking-eyebrow text-sage">
+            {t('cafes')}
+          </p>
+        </Reveal>
+
+        {/* Right meta */}
+        <Reveal delay={0.2} className="col-span-12 md:col-span-3 md:text-right">
+          <p className="font-serif text-4xl font-light italic text-sage md:text-5xl">
+            #1
+          </p>
+          <p className="mt-2 font-sans text-[11px] uppercase tracking-eyebrow text-charcoal/50">
+            {t('rank')}
+          </p>
+        </Reveal>
       </div>
     </section>
   );
