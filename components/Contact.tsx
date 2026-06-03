@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl';
 import { contact } from '@/src/data/content';
 import Reveal from './Reveal';
 import ContactForm from './ContactForm';
+import SectionTag from './SectionTag';
+import Pattern from './Pattern';
 
 export default function Contact() {
   const t = useTranslations('contact');
@@ -27,11 +29,18 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="bg-charcoal py-24 text-sand md:py-32">
-      <div className="container-x">
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-charcoal py-24 text-sand md:py-32"
+    >
+      <div className="text-sand">
+        <Pattern variant="lines" opacity={0.05} />
+      </div>
+
+      <div className="container-x relative">
         <Reveal>
-          <p className="eyebrow mb-5">{t('eyebrow')}</p>
-          <h2 className="max-w-2xl font-serif text-h2 font-light text-sand">
+          <SectionTag index={7} label={t('eyebrow')} tone="dark" />
+          <h2 className="mt-8 max-w-2xl font-serif text-h2 font-light text-sand">
             {t('title')}
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-sand/70">

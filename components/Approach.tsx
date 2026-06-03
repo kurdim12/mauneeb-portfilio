@@ -9,6 +9,8 @@ import {
   useScroll,
   useTransform,
 } from 'framer-motion';
+import SectionTag from './SectionTag';
+import Pattern from './Pattern';
 
 const steps = ['concept', 'equipment', 'menu', 'training', 'launch'] as const;
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -39,11 +41,12 @@ export default function Approach() {
       style={{ height: `${steps.length * 100}vh` }}
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="container-x grid w-full items-center gap-10 md:grid-cols-12 md:gap-12">
+        <Pattern variant="grid" opacity={0.04} />
+        <div className="container-x relative grid w-full items-center gap-10 md:grid-cols-12 md:gap-12">
           {/* Text column */}
           <div className="md:col-span-5">
-            <p className="eyebrow mb-5">{t('eyebrow')}</p>
-            <h2 className="font-serif text-h2 font-light text-charcoal">
+            <SectionTag index={2} label={t('eyebrow')} />
+            <h2 className="mt-8 font-serif text-h2 font-light text-charcoal">
               {t('title')}{' '}
               <span className="italic text-sage">{t('title_accent')}</span>
             </h2>

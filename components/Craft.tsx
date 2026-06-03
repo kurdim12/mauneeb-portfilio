@@ -3,17 +3,24 @@
 import { useTranslations } from 'next-intl';
 import Reveal from './Reveal';
 import Media from './Media';
+import SectionTag from './SectionTag';
+import Pattern from './Pattern';
 
 export default function Craft() {
   const t = useTranslations('craft');
 
   return (
-    <section className="bg-deep-olive py-24 text-sand md:py-32">
-      <div className="container-x">
+    <section className="relative overflow-hidden bg-deep-olive py-24 text-sand md:py-32">
+      <div className="text-sand">
+        <Pattern variant="dots" opacity={0.06} />
+      </div>
+
+      <div className="container-x relative">
         <Reveal>
-          <p className="eyebrow mb-5">{t('eyebrow')}</p>
-          <h2 className="max-w-3xl font-serif text-h2 font-light text-sand">
-            {t('title')} <span className="italic text-sage">{t('title_accent')}</span>
+          <SectionTag index={5} label={t('eyebrow')} tone="dark" />
+          <h2 className="mt-8 max-w-3xl font-serif text-h2 font-light text-sand">
+            {t('title')}{' '}
+            <span className="italic text-sage">{t('title_accent')}</span>
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-sand/70">
             {t('intro')}

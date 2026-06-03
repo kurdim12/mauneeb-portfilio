@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Media from './Media';
 import StatusPill from './StatusPill';
+import Magnetic from './Magnetic';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -97,15 +98,17 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: EASE, delay: 0.62 }}
           >
-            <a
-              href="#work"
-              className="group inline-flex items-center gap-2 bg-charcoal px-7 py-3.5 font-sans text-sm text-bone transition-opacity hover:opacity-85"
-            >
-              {t('cta_primary')}
-              <span className="transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">
-                &rarr;
-              </span>
-            </a>
+            <Magnetic>
+              <a
+                href="#work"
+                className="group inline-flex items-center gap-2 bg-charcoal px-7 py-3.5 font-sans text-sm text-bone transition-opacity hover:opacity-85"
+              >
+                {t('cta_primary')}
+                <span className="transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">
+                  &rarr;
+                </span>
+              </a>
+            </Magnetic>
             <a
               href="#contact"
               className="group relative font-sans text-sm text-charcoal"

@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
 import Reveal from './Reveal';
 import Media from './Media';
+import SectionTag from './SectionTag';
 import { useFolderPhotos } from './MediaProvider';
 import type { Locale } from '@/src/i18n';
 
@@ -16,8 +17,8 @@ export default function Store() {
     <section id="store" className="bg-bone py-24 md:py-32">
       <div className="container-x grid items-center gap-12 md:grid-cols-2 md:gap-16">
         <Reveal>
-          <p className="eyebrow mb-5">{t('eyebrow')}</p>
-          <h2 className="font-serif text-h2 font-light text-charcoal">
+          <SectionTag index={6} label={t('eyebrow')} />
+          <h2 className="mt-8 font-serif text-h2 font-light text-charcoal">
             {t('title')}
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/70">
