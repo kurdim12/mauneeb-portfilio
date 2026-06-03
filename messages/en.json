@@ -43,6 +43,11 @@
     "next": "Next photo",
     "close": "Close"
   },
+  "status": {
+    "at_bar": "At the bar in Amman",
+    "replying_soon": "Replying within ~2h",
+    "replying_tomorrow": "Replying tomorrow morning"
+  },
   "approach": {
     "eyebrow": "The Build",
     "title": "From empty room",

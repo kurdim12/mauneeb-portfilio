@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Media from './Media';
+import StatusPill from './StatusPill';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -56,6 +57,15 @@ export default function Hero() {
 
       <div className="container-x relative grid items-center gap-12 md:grid-cols-12">
         <div className="md:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
+            className="mb-5"
+          >
+            <StatusPill />
+          </motion.div>
+
           <motion.p
             className="eyebrow mb-7"
             initial={{ opacity: 0 }}

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import LangToggle from './LangToggle';
+import Wordmark from './Wordmark';
 
 const links = [
   { id: 'work', key: 'work' },
@@ -59,13 +60,12 @@ export default function Nav() {
       }`}
     >
       <nav className="container-x flex h-16 items-center justify-between md:h-20">
-        <a href="#top" className="group flex items-center gap-2.5 text-charcoal">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-deep-olive font-serif text-base italic leading-none text-sage transition-transform duration-300 group-hover:-rotate-6">
-            M
-          </span>
-          <span className="font-serif text-xl font-normal tracking-tight">
-            Muneeb
-          </span>
+        <a
+          href="#top"
+          aria-label="Muneeb — home"
+          className="transition-opacity hover:opacity-80"
+        >
+          <Wordmark />
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
