@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   motion,
@@ -20,10 +20,17 @@ import { useProjectPhotos } from './MediaProvider';
 export default function Work() {
   const [active, setActive] = useState<Project | null>(null);
 
+  const { featured, other } = useMemo(() => {
+    const featured = projects.filter((p) => p.featured);
+    const other = projects.filter((p) => !p.featured);
+    return { featured, other };
+  }, []);
+
   return (
     <div id="work">
-      <WorkMobile onOpen={setActive} />
-      <WorkDesktop onOpen={setActive} />
+      <WorkMobile featured={featured} onOpen={setActive} />
+      <WorkDesktop featured={featured} onOpen={setActive} />
+      <AlsoBuilt projects={other} onOpen={setActive} />
       <ProjectModal project={active} onClose={() => setActive(null)} />
     </div>
   );
@@ -31,7 +38,13 @@ export default function Work() {
 
 /* ------------------------------ Mobile ------------------------------ */
 
-function WorkMobile({ onOpen }: { onOpen: (p: Project) => void }) {
+function WorkMobile({
+  featured,
+  onOpen,
+}: {
+  featured: Project[];
+  onOpen: (p: Project) => void;
+}) {
   const t = useTranslations('work');
 
   return (
@@ -46,7 +59,7 @@ function WorkMobile({ onOpen }: { onOpen: (p: Project) => void }) {
           {t('intro')}
         </p>
         <div className="mt-12 space-y-14">
-          {projects.map((p, i) => (
+          {featured.map((p, i) => (
             <Reveal key={p.id} delay={0}>
               <MobileProjectCard
                 project={p}
@@ -79,6 +92,7 @@ function MobileProjectCard({
     <button
       onClick={onOpen}
       className="group block w-full text-left rtl:text-right"
+      aria-label={`Open ${project.name[locale]} case study`}
     >
       <div className="relative overflow-hidden">
         <Media
@@ -86,7 +100,7 @@ function MobileProjectCard({
           alt={project.name[locale]}
           seed={project.id}
           initial={project.name[locale].charAt(0)}
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="aspect-[4/5] w-full"
           imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
         />
@@ -119,7 +133,13 @@ function MobileProjectCard({
 
 /* ------------------------------ Desktop ----------------------------- */
 
-function WorkDesktop({ onOpen }: { onOpen: (p: Project) => void }) {
+function WorkDesktop({
+  featured,
+  onOpen,
+}: {
+  featured: Project[];
+  onOpen: (p: Project) => void;
+}) {
   const t = useTranslations('work');
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -127,15 +147,21 @@ function WorkDesktop({ onOpen }: { onOpen: (p: Project) => void }) {
     offset: ['start start', 'end end'],
   });
 
-  // 12 panels × 80vw + 11 × 4vw + 10vw L padding + 10vw R padding = 1024vw
-  // Translate from 0 to -(1024 - 100) = -924vw
-  const x = useTransform(scrollYProgress, [0.04, 0.96], ['0vw', '-924vw']);
+  const panelCount = featured.length;
+  // Panel = 80vw, gap = 4vw, pl/pr = 10vw.
+  // Strip width = 84·N + 16 vw. Translate end = -(84·(N-1)) vw.
+  const translateEnd = `-${84 * Math.max(0, panelCount - 1)}vw`;
+  const x = useTransform(
+    scrollYProgress,
+    [0.04, 0.96],
+    ['0vw', translateEnd]
+  );
 
   return (
     <section
       ref={ref}
       className="relative hidden bg-bone md:block"
-      style={{ height: `${projects.length * 60}vh` }}
+      style={{ height: `${Math.max(1, panelCount) * 60}vh` }}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
         <div className="container-x relative z-10 pt-28 md:pt-32">
@@ -155,7 +181,7 @@ function WorkDesktop({ onOpen }: { onOpen: (p: Project) => void }) {
           style={{ x }}
           className="mt-12 flex flex-1 items-center gap-[4vw] pl-[10vw] pr-[10vw] rtl:flex-row-reverse"
         >
-          {projects.map((p, i) => (
+          {featured.map((p, i) => (
             <DesktopPanel
               key={p.id}
               project={p}
@@ -165,7 +191,7 @@ function WorkDesktop({ onOpen }: { onOpen: (p: Project) => void }) {
           ))}
         </motion.div>
 
-        <PanelIndicator progress={scrollYProgress} total={projects.length} />
+        <PanelIndicator progress={scrollYProgress} total={panelCount} />
       </div>
     </section>
   );
@@ -189,21 +215,20 @@ function DesktopPanel({
     <button
       onClick={onOpen}
       className="group flex w-[80vw] shrink-0 items-center gap-10 text-left rtl:text-right"
+      aria-label={`Open ${project.name[locale]} case study`}
     >
-      {/* Image side */}
       <div className="w-[56%]">
         <Media
           src={cardSrc}
           alt={project.name[locale]}
           seed={project.id}
           initial={project.name[locale].charAt(0)}
-          sizes="50vw"
+          sizes="(min-width: 768px) 45vw, 100vw"
           className="aspect-[5/6] w-full"
           imgClassName="transition-transform duration-[1100ms] ease-expo group-hover:scale-[1.04]"
         />
       </div>
 
-      {/* Text side */}
       <div className="w-[44%]">
         <p className="font-sans text-[11px] uppercase tracking-eyebrow text-charcoal/35">
           N°.{String(index + 1).padStart(3, '0')}
@@ -229,7 +254,7 @@ function DesktopPanel({
         <span className="mt-7 inline-flex items-center gap-2 font-sans text-sm text-charcoal">
           <span className="relative">
             {t('view')}
-            <span className="absolute -bottom-1 left-0 h-px w-full bg-charcoal transition-transform duration-300 group-hover:bg-sage" />
+            <span className="absolute -bottom-1 left-0 h-px w-full bg-charcoal transition-colors duration-300 group-hover:bg-sage" />
           </span>
           <span className="text-sage transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">
             &rarr;
@@ -248,7 +273,12 @@ function PanelIndicator({
   total: number;
 }) {
   const [idx, setIdx] = useState(0);
-  const mapped = useTransform(progress, [0.04, 0.96], [0, total - 1]);
+  const mapped = useTransform(
+    progress,
+    [0.04, 0.96],
+    [0, Math.max(0, total - 1)]
+  );
+  const fillWidth = useTransform(progress, [0, 1], ['0%', '100%']);
 
   useMotionValueEvent(mapped, 'change', (v) => {
     setIdx(Math.min(total - 1, Math.max(0, Math.round(v))));
@@ -258,22 +288,70 @@ function PanelIndicator({
     <div className="absolute bottom-8 left-0 right-0 z-10">
       <div className="container-x flex items-end justify-between gap-6 font-sans text-xs uppercase tracking-eyebrow text-charcoal/45">
         <div className="flex items-baseline gap-3">
-          <span className="font-serif text-3xl font-light leading-none text-charcoal tabular-nums">
+          <span className="font-serif text-3xl font-light leading-none tabular-nums text-charcoal">
             {String(idx + 1).padStart(2, '0')}
           </span>
           <span>/</span>
-          <span className="tabular-nums">{String(total).padStart(2, '0')}</span>
+          <span className="tabular-nums">
+            {String(total).padStart(2, '0')}
+          </span>
         </div>
         <div className="relative h-px w-40 bg-charcoal/15 md:w-72">
           <motion.span
-            className="absolute inset-y-0 left-0 bg-sage"
-            style={{
-              width: useTransform(progress, [0, 1], ['0%', '100%']),
-            }}
+            className="absolute inset-y-0 left-0 bg-sage rtl:left-auto rtl:right-0"
+            style={{ width: fillWidth }}
           />
         </div>
         <span>scroll &rarr;</span>
       </div>
     </div>
+  );
+}
+
+/* ----------------------------- Also built --------------------------- */
+
+function AlsoBuilt({
+  projects: list,
+  onOpen,
+}: {
+  projects: Project[];
+  onOpen: (p: Project) => void;
+}) {
+  const t = useTranslations('work');
+  const locale = useLocale() as Locale;
+
+  if (list.length === 0) return null;
+
+  return (
+    <section className="bg-bone py-20 md:py-24">
+      <div className="container-x">
+        <Reveal>
+          <p className="eyebrow mb-8">{t('also_built')}</p>
+        </Reveal>
+        <ul className="grid grid-cols-1 border-t border-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
+          {list.map((p, i) => (
+            <Reveal
+              key={p.id}
+              delay={(i % 3) * 0.05}
+              as="li"
+              className="border-b border-charcoal/10 sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(odd)]:border-charcoal/10 lg:[&:nth-child(3n+1)]:border-r lg:[&:nth-child(3n+1)]:border-charcoal/10 lg:[&:nth-child(3n+2)]:border-r lg:[&:nth-child(3n+2)]:border-charcoal/10"
+            >
+              <button
+                onClick={() => onOpen(p)}
+                aria-label={`Open ${p.name[locale]} case study`}
+                className="group flex w-full items-baseline justify-between gap-4 px-2 py-5 text-left transition-colors hover:bg-charcoal/[0.02] sm:px-5 md:py-6 rtl:text-right"
+              >
+                <span className="font-serif text-xl font-normal text-charcoal transition-colors group-hover:text-sage md:text-2xl">
+                  {p.name[locale]}
+                </span>
+                <span className="shrink-0 font-sans text-[11px] uppercase tracking-eyebrow text-charcoal/45 tabular-nums">
+                  {p.city[locale]} · {p.year}
+                </span>
+              </button>
+            </Reveal>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }

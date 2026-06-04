@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -36,6 +36,8 @@ function ModalInner({
   const isRtl = locale === 'ar';
   const photos = useProjectPhotos(project.id);
   const [index, setIndex] = useState(0);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
 
   const count = photos.length;
   const go = useCallback(
@@ -46,11 +48,45 @@ function ModalInner({
     [count]
   );
 
+  // Save previously focused element + move focus into dialog; restore on close
+  useEffect(() => {
+    const trigger = document.activeElement as HTMLElement | null;
+    // Focus the close button on mount (next tick to wait for animation)
+    requestAnimationFrame(() => closeBtnRef.current?.focus());
+    return () => {
+      if (trigger && typeof trigger.focus === 'function') trigger.focus();
+    };
+  }, []);
+
+  // Keyboard handling: Esc, Arrows, Tab focus trap
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
       if (e.key === 'ArrowRight') go(isRtl ? -1 : 1);
       if (e.key === 'ArrowLeft') go(isRtl ? 1 : -1);
+      if (e.key === 'Tab') {
+        const container = dialogRef.current;
+        if (!container) return;
+        const focusable = Array.from(
+          container.querySelectorAll<HTMLElement>(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((el) => !el.hasAttribute('disabled'));
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const activeEl = document.activeElement;
+        if (e.shiftKey && activeEl === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && activeEl === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
@@ -68,6 +104,8 @@ function ModalInner({
     t('scope_launch'),
   ];
 
+  const hasCaseStudy = !!(project.challenge || project.approach || project.result);
+
   return (
     <motion.div
       className="fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-8"
@@ -83,6 +121,7 @@ function ModalInner({
       />
 
       <motion.div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-label={project.name[locale]}
@@ -164,23 +203,11 @@ function ModalInner({
               {project.city[locale]} · {project.year}
             </p>
 
-            <p className="mt-6 text-base leading-relaxed text-charcoal/75">
-              {project.desc[locale]}
-            </p>
-
-            <ul className="mt-8 space-y-3 border-t border-charcoal/10 pt-6">
-              {scope.map((step, i) => (
-                <li
-                  key={step}
-                  className="flex items-center gap-3 font-sans text-sm text-charcoal/70"
-                >
-                  <span className="font-serif text-sage">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  {step}
-                </li>
-              ))}
-            </ul>
+            {hasCaseStudy ? (
+              <CaseStudyBody project={project} locale={locale} />
+            ) : (
+              <FallbackBody project={project} locale={locale} scope={scope} />
+            )}
           </div>
 
           {count > 1 && (
@@ -191,6 +218,7 @@ function ModalInner({
         </div>
 
         <button
+          ref={closeBtnRef}
           onClick={onClose}
           aria-label={t('close')}
           className="absolute top-4 flex h-9 w-9 items-center justify-center bg-bone/85 text-charcoal transition-opacity hover:opacity-80 ltr:right-4 rtl:left-4"
@@ -199,5 +227,102 @@ function ModalInner({
         </button>
       </motion.div>
     </motion.div>
+  );
+}
+
+function CaseStudyBody({
+  project,
+  locale,
+}: {
+  project: Project;
+  locale: Locale;
+}) {
+  const t = useTranslations('work');
+  return (
+    <div className="mt-8 space-y-6 border-t border-charcoal/10 pt-6">
+      {project.challenge && (
+        <div>
+          <p className="eyebrow mb-2">{t('challenge_label')}</p>
+          <p className="text-sm leading-relaxed text-charcoal/75">
+            {project.challenge[locale]}
+          </p>
+        </div>
+      )}
+      {project.approach && (
+        <div>
+          <p className="eyebrow mb-2">{t('approach_label')}</p>
+          <p className="text-sm leading-relaxed text-charcoal/75">
+            {project.approach[locale]}
+          </p>
+        </div>
+      )}
+      {project.result && (
+        <div>
+          <p className="eyebrow mb-2">{t('result_label')}</p>
+          <p className="text-sm leading-relaxed text-charcoal/75">
+            {project.result[locale]}
+          </p>
+        </div>
+      )}
+
+      {project.metric && (
+        <div className="border-t border-charcoal/10 pt-6">
+          <p className="font-serif text-5xl font-light leading-none text-charcoal md:text-6xl">
+            {project.metric.value}
+          </p>
+          <p className="mt-2 font-sans text-xs uppercase tracking-eyebrow text-charcoal/55">
+            {project.metric.label[locale]}
+          </p>
+        </div>
+      )}
+
+      {project.testimonial && (
+        <figure className="border-t border-charcoal/10 pt-6">
+          <blockquote className="font-serif text-xl italic leading-snug text-sage md:text-2xl">
+            &ldquo;{project.testimonial.quote[locale]}&rdquo;
+          </blockquote>
+          <figcaption className="mt-3 font-sans text-xs uppercase tracking-eyebrow text-charcoal/60">
+            {project.testimonial.author}
+            {project.testimonial.role[locale] ? (
+              <span className="text-charcoal/40">
+                {' '}
+                · {project.testimonial.role[locale]}
+              </span>
+            ) : null}
+          </figcaption>
+        </figure>
+      )}
+    </div>
+  );
+}
+
+function FallbackBody({
+  project,
+  locale,
+  scope,
+}: {
+  project: Project;
+  locale: Locale;
+  scope: string[];
+}) {
+  return (
+    <>
+      <p className="mt-6 text-base leading-relaxed text-charcoal/75">
+        {project.desc[locale]}
+      </p>
+      <ul className="mt-8 space-y-3 border-t border-charcoal/10 pt-6">
+        {scope.map((step, i) => (
+          <li
+            key={step}
+            className="flex items-center gap-3 font-sans text-sm text-charcoal/70"
+          >
+            <span className="font-serif text-sage">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            {step}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
