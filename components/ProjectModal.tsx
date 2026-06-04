@@ -10,6 +10,13 @@ import { useProjectPhotos } from './MediaProvider';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+// Fields whose value starts with "TODO" are placeholders for owner fill;
+// hide them from rendering so the public site never shows TODO strings.
+function isTodo(value: string | undefined): boolean {
+  if (!value) return true;
+  return value.trim().toUpperCase().startsWith('TODO');
+}
+
 export default function ProjectModal({
   project,
   onClose,
@@ -265,7 +272,7 @@ function CaseStudyBody({
         </div>
       )}
 
-      {project.metric && (
+      {project.metric && !isTodo(project.metric.value) && (
         <div className="border-t border-charcoal/10 pt-6">
           <p className="font-serif text-5xl font-light leading-none text-charcoal md:text-6xl">
             {project.metric.value}
@@ -276,22 +283,24 @@ function CaseStudyBody({
         </div>
       )}
 
-      {project.testimonial && (
-        <figure className="border-t border-charcoal/10 pt-6">
-          <blockquote className="font-serif text-xl leading-snug text-sage ltr:italic rtl:font-medium md:text-2xl">
-            &ldquo;{project.testimonial.quote[locale]}&rdquo;
-          </blockquote>
-          <figcaption className="mt-3 font-sans text-xs uppercase tracking-eyebrow text-charcoal/60">
-            {project.testimonial.author}
-            {project.testimonial.role[locale] ? (
-              <span className="text-charcoal/40">
-                {' '}
-                · {project.testimonial.role[locale]}
-              </span>
-            ) : null}
-          </figcaption>
-        </figure>
-      )}
+      {project.testimonial &&
+        !isTodo(project.testimonial.quote[locale]) &&
+        !isTodo(project.testimonial.author) && (
+          <figure className="border-t border-charcoal/10 pt-6">
+            <blockquote className="font-serif text-xl leading-snug text-sage ltr:italic rtl:font-medium md:text-2xl">
+              &ldquo;{project.testimonial.quote[locale]}&rdquo;
+            </blockquote>
+            <figcaption className="mt-3 font-sans text-xs uppercase tracking-eyebrow text-charcoal/60">
+              {project.testimonial.author}
+              {project.testimonial.role[locale] ? (
+                <span className="text-charcoal/40">
+                  {' '}
+                  · {project.testimonial.role[locale]}
+                </span>
+              ) : null}
+            </figcaption>
+          </figure>
+        )}
     </div>
   );
 }

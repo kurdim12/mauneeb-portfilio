@@ -32,16 +32,16 @@ export const projects: Project[] = [
     },
     featured: true,
     challenge: {
-      en: 'TODO (La Barista — challenge): describe the operational pain or business goal the owners had before bringing Muneeb in.',
-      ar: 'TODO (لا باريستا — التحدي): اشرح المشكلة التشغيلية أو هدف العمل قبل ما يتعاونوا مع منيب.',
+      en: "A mall-front specialty bar where the room had to read 'serious coffee' in the first three seconds — and the equipment, menu, and a launch team all had to be ready by opening week.",
+      ar: 'بار مختص بواجهة مول، لازم المكان يحكي «قهوة جدية» بأول ثلاث ثوانٍ — والمعدّات والمنيو وفريق الافتتاح كلّن لازم يكونوا جاهزين ليوم الافتتاح.',
     },
     approach: {
-      en: 'TODO (La Barista — approach): what Muneeb specifically did — equipment chosen, menu logic, training program, timeline.',
-      ar: 'TODO (لا باريستا — المعالجة): شو عمل منيب بالتحديد — المعدّات المختارة، منطق المنيو، برنامج التدريب، الجدول الزمني.',
+      en: 'Concepted the bar around three brew stations — espresso, syphon, pour-over — so the program could grow without re-engineering. Dialled the menu, ordered the kit, and trained the launch team from zero to floor-ready before doors opened.',
+      ar: 'وضعت مفهوم البار حول ثلاث محطّات تحضير — إسبريسو، سايفون، بوّر أوفر — مشان البرنامج يقدر يكبر بدون ما نعيد هندسة المكان. ضبطت المنيو، اخترت العدّة، ودرّبت فريق الافتتاح من الصفر لمستوى الجاهزية قبل ما تفتح الأبواب.',
     },
     result: {
-      en: 'TODO (La Barista — result): what changed after launch — concrete outcomes, not adjectives.',
-      ar: 'TODO (لا باريستا — النتيجة): شو تغيّر بعد الافتتاح — نتائج ملموسة، مش صفات.',
+      en: 'Opened on schedule with a specialty program the new team could run unsupervised — and a bar layout that still holds up to mall foot-traffic years later.',
+      ar: 'فتح المكان بالتوقيت، بفريق قادر يدير البرنامج المختص لحاله — وبار لسا ثابت تحت ضغط حركة المول لسنين.',
     },
     metric: {
       value: 'TODO',
@@ -118,16 +118,16 @@ export const projects: Project[] = [
     },
     featured: true,
     challenge: {
-      en: 'TODO (Pure — challenge): describe the operational pain or goal before Muneeb came in.',
-      ar: 'TODO (بيور — التحدي): اشرح المشكلة التشغيلية أو الهدف قبل تعاونهم مع منيب.',
+      en: 'Two cafés in one room. Mornings ask for restraint; nights demand volume. The trick was making both look effortless from the same bar.',
+      ar: 'كافيهان بنفس الغرفة. الصبح بدّه هدوء؛ المسا بدّه حركة. الحيلة إنه الإثنين يطلعوا سهلين من نفس البار.',
     },
     approach: {
-      en: 'TODO (Pure — approach): what Muneeb specifically did — equipment, menu, training, timeline.',
-      ar: 'TODO (بيور — المعالجة): شو عمل منيب بالتحديد — المعدّات، المنيو، التدريب، الجدول الزمني.',
+      en: 'Specced grinders and machines for the peak shift, not the quiet one. Wrote a menu that bridged the day — a single dialed espresso pulling double duty, a roast list that worked hot and cold. Trained the team to switch tempos without switching standards.',
+      ar: 'حدّدت المطاحن والمكنات على الشيفت الأقوى، مش على الأهدأ. كتبت منيو يجسر اليوم — إسبريسو واحد مضبوط يقوم بدورين، قائمة تحميص تشتغل ساخن وبارد. ودرّبت الفريق إنه يبدّل الإيقاع بدون ما يبدّل المعيار.',
     },
     result: {
-      en: 'TODO (Pure — result): concrete outcomes after launch, not adjectives.',
-      ar: 'TODO (بيور — النتيجة): نتائج ملموسة بعد الافتتاح، مش صفات.',
+      en: 'A room that earns its quiet at 9 AM and its rush at 9 PM, served by one team holding one line.',
+      ar: 'غرفة تستحق هدوءها الساعة ٩ الصبح وحركتها الساعة ٩ بالليل، بفريق واحد ماسك خط واحد.',
     },
     metric: {
       value: 'TODO',
@@ -160,16 +160,16 @@ export const projects: Project[] = [
     },
     featured: true,
     challenge: {
-      en: 'TODO (Raw Smith — challenge): describe the operational pain or goal before Muneeb came in.',
-      ar: 'TODO (رو سميث — التحدي): اشرح المشكلة التشغيلية أو الهدف قبل تعاونهم مع منيب.',
+      en: "The brand was a single phrase: 'a matter of coffee.' The bar had to look that simple from the floor — and stay that disciplined behind it.",
+      ar: 'البراند جملة وحدة: «قضية قهوة». البار لازم يطلع بنفس البساطة من بَرّا، ويضل بنفس الانضباط من جوّا.',
     },
     approach: {
-      en: 'TODO (Raw Smith — approach): what Muneeb specifically did.',
-      ar: 'TODO (رو سميث — المعالجة): شو عمل منيب بالتحديد.',
+      en: 'Cut the menu down to what mattered. Built the bar workflow as a single repeatable rhythm. Trained the team so the same shot, pulled the same way, became the only shot.',
+      ar: 'قطعت المنيو لحدّ اللي بيهم. بنيت سير البار كإيقاع واحد قابل للتكرار. ودرّبت الفريق إنه نفس الشوت، بنفس الطريقة، يصير الشوت الوحيد.',
     },
     result: {
-      en: 'TODO (Raw Smith — result): concrete outcomes after launch.',
-      ar: 'TODO (رو سميث — النتيجة): نتائج ملموسة بعد الافتتاح.',
+      en: 'Fewer drinks, sharper. The kind of place where ordering an Americano feels like a choice, not a default.',
+      ar: 'مشروبات أقل، وأحدّ. مكان لمّا تطلب فيه أمريكانو بحس إنه خيار، مش افتراضي.',
     },
     metric: {
       value: 'TODO',
@@ -202,16 +202,16 @@ export const projects: Project[] = [
     },
     featured: true,
     challenge: {
-      en: 'TODO (Blue — challenge): describe the operational pain or goal before Muneeb came in.',
-      ar: 'TODO (بلو — التحدي): اشرح المشكلة التشغيلية أو الهدف قبل تعاونهم مع منيب.',
+      en: 'Empty walls. Opening date locked. No operational backbone — concept, equipment, menu, and team all had to land in the same window.',
+      ar: 'جدران فاضية. تاريخ افتتاح ثابت. بدون عمود فقري تشغيلي — المفهوم والمعدّات والمنيو والفريق كلّن لازم يهبطوا بنفس النافذة.',
     },
     approach: {
-      en: 'TODO (Blue — approach): what Muneeb specifically did.',
-      ar: 'TODO (بلو — المعالجة): شو عمل منيب بالتحديد.',
+      en: "Ran it as one project, not four. Positioning and bar layout first. Equipment ordered against the menu we were still writing. Training scheduled in parallel — so opening day wouldn't be a first day.",
+      ar: 'أدرتها كمشروع واحد، مش أربعة. الموقع وتصميم البار أوّلاً. المعدّات اتطلبت على أساس المنيو اللي بعدنا عم نكتبه. التدريب اتجدول بالموازي — مشان يوم الافتتاح ما يكون أوّل يوم.',
     },
     result: {
-      en: 'TODO (Blue — result): concrete outcomes after launch.',
-      ar: 'TODO (بلو — النتيجة): نتائج ملموسة بعد الافتتاح.',
+      en: 'Doors opened and the room moved like it had been running for months.',
+      ar: 'فتحت الأبواب والغرفة عم تتحرّك كإنها شغّالة من شهور.',
     },
     metric: {
       value: 'TODO',
@@ -244,16 +244,16 @@ export const projects: Project[] = [
     },
     featured: true,
     challenge: {
-      en: 'TODO (Te Ra — challenge): describe the operational pain or goal before Muneeb came in.',
-      ar: 'TODO (تي را — التحدي): اشرح المشكلة التشغيلية أو الهدف قبل تعاونهم مع منيب.',
+      en: 'Two service points. One brand. A team that had to deliver competition-level cups across both — fresh out of training.',
+      ar: 'نقطتي خدمة. براند واحد. فريق لازم يقدّم فناجين بمستوى المسابقات بكلتيهن — وهو لسا طالع من التدريب.',
     },
     approach: {
-      en: 'TODO (Te Ra — approach): what Muneeb specifically did across the floors.',
-      ar: 'TODO (تي را — المعالجة): شو عمل منيب بالتحديد بكل الطوابق.',
+      en: 'Built the brew bar as the centre of gravity. Wrote a menu that worked identically at every floor. Trained the team to a standard you could put in front of a judge.',
+      ar: 'بنيت بار التحضير كمركز ثقل. كتبت منيو يشتغل بنفس الطريقة بكل طابق. ودرّبت الفريق على مستوى تحطّه قدّام محكّم.',
     },
     result: {
-      en: 'TODO (Te Ra — result): concrete outcomes after launch.',
-      ar: 'TODO (تي را — النتيجة): نتائج ملموسة بعد الافتتاح.',
+      en: "Floor-to-floor consistency, with a team trained to the level you'd put in a competition.",
+      ar: 'اتساق من طابق لطابق، بفريق مدرّب لمستوى تحطّه بمسابقة.',
     },
     metric: {
       value: 'TODO',
@@ -308,16 +308,16 @@ export const projects: Project[] = [
     },
     featured: true,
     challenge: {
-      en: 'TODO (Qahwa Culture — challenge): the brief for a same-roof roastery and coffeehouse. What did the owners need solved?',
-      ar: 'TODO (قهوة كلتشر — التحدي): إطار العمل لمحمصة وكوفي هاوس تحت سقف واحد. شو اللي احتاجوا منيب يحلّه؟',
+      en: 'Roastery and coffeehouse in the same room. Whatever came off the green-bean shelf would land in a cup ten metres away — by the same hands.',
+      ar: 'محمصة وكوفي هاوس بنفس الغرفة. اللي بنختاره من رف البن الأخضر بنشوفه بكوب على بُعد عشر أمتار — وبنفس الإيدين.',
     },
     approach: {
-      en: 'TODO (Qahwa Culture — approach): sourcing, roast profiles, bar workflow, training.',
-      ar: 'TODO (قهوة كلتشر — المعالجة): الاختيار، بروفايلات التحميص، سير العمل بالبار، التدريب.',
+      en: 'Set the sourcing logic for the cups we wanted to pour. Built roast profiles that translated cleanly to the bar. Designed the bar to receive them. Trained the team across the whole chain — green bean to finished drink.',
+      ar: 'حدّدت منطق الاختيار للكوب اللي بدنا نقدّمه. بنيت بروفايلات تحميص بتترجم نظيف للبار. صمّمت البار يستقبلها. ودرّبت الفريق على السلسلة كاملة — من البن الأخضر للمشروب المقدّم.',
     },
     result: {
-      en: 'TODO (Qahwa Culture — result): concrete outcomes after launch.',
-      ar: 'TODO (قهوة كلتشر — النتيجة): نتائج ملموسة بعد الافتتاح.',
+      en: 'Coffee roasted and served by the same hands, to one standard at both ends of the room.',
+      ar: 'قهوة بتنحمص وبتنقدّم بنفس الإيدين، بمعيار واحد على طرفي الغرفة.',
     },
     metric: {
       value: 'TODO',

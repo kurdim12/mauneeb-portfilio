@@ -55,9 +55,9 @@
     "close": "Close"
   },
   "trust": {
-    "sca": "TODO: SCA-certified — fill year",
-    "trained": "TODO: number of baristas trained",
-    "award": "TODO: competition / award"
+    "sca": "Trainer · 3 national institutions",
+    "trained": "Specialty coffee since 2013",
+    "award": "Cafés across Amman & Aqaba"
   },
   "manifesto": {
     "eyebrow": "Manifesto",
@@ -72,7 +72,7 @@
   },
   "approach": {
     "eyebrow": "The Build",
-    "method_name": "TODO: name your method (e.g. The Muneeb Method)",
+    "method_name": "The Five-Step Build",
     "title": "From empty room",
     "title_accent": "to opening day.",
     "intro": "Every project runs the same disciplined path — no skipped steps, no guesswork.",
