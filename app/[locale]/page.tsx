@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { getAvailableImages } from '@/src/images';
 import { MediaProvider } from '@/components/MediaProvider';
 import IntroCurtain from '@/components/IntroCurtain';
+import ExtractionMeter from '@/components/ExtractionMeter';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
@@ -27,6 +28,7 @@ export default async function Home({
   return (
     <MediaProvider available={available}>
       <IntroCurtain />
+      <ExtractionMeter />
       <Nav />
       <main>
         <Hero />
