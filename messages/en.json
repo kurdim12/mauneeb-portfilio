@@ -39,6 +39,7 @@
     "engagement_training": "Training Only",
     "featured": "Featured build",
     "view": "View project",
+    "case_study": "Case study",
     "also_built": "Also built",
     "challenge_label": "The challenge",
     "approach_label": "The approach",
@@ -53,6 +54,11 @@
     "prev": "Previous photo",
     "next": "Next photo",
     "close": "Close"
+  },
+  "notebook": {
+    "eyebrow": "From the notebook · 2026",
+    "body": "Most rooms don't fail at opening. They fail in the second month — when the new team forgets the dial, when the menu starts sliding toward 'whatever sells fastest.' My job is to make the room hard to forget itself — so the standard holds when I'm not there.",
+    "signature": "Muneeb"
   },
   "trust": {
     "sca": "Trainer · 3 national institutions",

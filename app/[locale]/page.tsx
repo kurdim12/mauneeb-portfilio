@@ -11,6 +11,7 @@ import Marquee from '@/components/Marquee';
 import Manifesto from '@/components/Manifesto';
 import Work from '@/components/Work';
 import Approach from '@/components/Approach';
+import FieldNotes from '@/components/FieldNotes';
 import Teaching from '@/components/Teaching';
 import About from '@/components/About';
 import Craft from '@/components/Craft';
@@ -39,6 +40,7 @@ export default async function Home({
         <Marquee />
         <Work />
         <Approach />
+        <FieldNotes />
         <Teaching />
         <About />
         <Craft />

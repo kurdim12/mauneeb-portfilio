@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
-import type { Project } from '@/src/data/content';
+import { projects, type Project } from '@/src/data/content';
 import type { Locale } from '@/src/i18n';
 import { useProjectPhotos } from './MediaProvider';
 
@@ -245,52 +245,84 @@ function CaseStudyBody({
   locale: Locale;
 }) {
   const t = useTranslations('work');
+  const featuredOrder = projects.filter((p) => p.featured).map((p) => p.id);
+  const idx = featuredOrder.indexOf(project.id);
+  const caseNo = idx >= 0 ? `N°.${String(idx + 1).padStart(3, '0')}` : null;
+
   return (
-    <div className="mt-8 space-y-6 border-t border-charcoal/10 pt-6">
+    <div className="mt-8">
+      {/* Magazine masthead */}
+      <div className="flex items-center gap-4 border-t border-charcoal/15 pt-4">
+        <span className="eyebrow text-sage">{t('case_study')}</span>
+        <span className="block h-px flex-1 bg-charcoal/10" />
+        {caseNo && (
+          <span className="font-sans text-[11px] uppercase tracking-eyebrow tabular-nums text-charcoal/45">
+            {caseNo}
+          </span>
+        )}
+      </div>
+
+      {/* Challenge — with drop cap (LTR only; Arabic doesn't use drop caps) */}
       {project.challenge && (
-        <div>
-          <p className="eyebrow mb-2">{t('challenge_label')}</p>
-          <p className="text-sm leading-relaxed text-charcoal/75">
+        <div className="mt-8">
+          <p className="eyebrow mb-3">{t('challenge_label')}</p>
+          <p className="text-base leading-relaxed text-charcoal/85 ltr:first-letter:float-left ltr:first-letter:me-3 ltr:first-letter:font-serif ltr:first-letter:text-7xl ltr:first-letter:font-light ltr:first-letter:leading-[0.82] ltr:first-letter:text-sage">
             {project.challenge[locale]}
           </p>
         </div>
       )}
+
+      {/* Sage hairline divider */}
+      {project.challenge && project.approach && (
+        <div className="my-8 h-px w-12 bg-sage" />
+      )}
+
+      {/* Approach */}
       {project.approach && (
         <div>
-          <p className="eyebrow mb-2">{t('approach_label')}</p>
-          <p className="text-sm leading-relaxed text-charcoal/75">
+          <p className="eyebrow mb-3">{t('approach_label')}</p>
+          <p className="text-base leading-relaxed text-charcoal/80">
             {project.approach[locale]}
           </p>
         </div>
       )}
+
+      {project.approach && project.result && (
+        <div className="my-8 h-px w-12 bg-sage" />
+      )}
+
+      {/* Result */}
       {project.result && (
         <div>
-          <p className="eyebrow mb-2">{t('result_label')}</p>
-          <p className="text-sm leading-relaxed text-charcoal/75">
+          <p className="eyebrow mb-3">{t('result_label')}</p>
+          <p className="text-base leading-relaxed text-charcoal/80">
             {project.result[locale]}
           </p>
         </div>
       )}
 
+      {/* Metric — magazine pull-stat */}
       {project.metric && !isTodo(project.metric.value) && (
-        <div className="border-t border-charcoal/10 pt-6">
-          <p className="font-serif text-5xl font-light leading-none text-charcoal md:text-6xl">
+        <div className="my-10 grid grid-cols-[auto_auto_1fr] items-center gap-5 border-y border-sage/45 py-7">
+          <p className="font-serif text-6xl font-light leading-[0.85] text-charcoal md:text-7xl">
             {project.metric.value}
           </p>
-          <p className="mt-2 font-sans text-xs uppercase tracking-eyebrow text-charcoal/55">
+          <span className="block h-12 w-px bg-sage" />
+          <p className="max-w-[18ch] font-sans text-[11px] uppercase leading-relaxed tracking-eyebrow text-charcoal/55">
             {project.metric.label[locale]}
           </p>
         </div>
       )}
 
+      {/* Testimonial — pull quote with sage inline-start rule */}
       {project.testimonial &&
         !isTodo(project.testimonial.quote[locale]) &&
         !isTodo(project.testimonial.author) && (
-          <figure className="border-t border-charcoal/10 pt-6">
-            <blockquote className="font-serif text-xl leading-snug text-sage ltr:italic rtl:font-medium md:text-2xl">
+          <figure className="my-10 border-s-2 border-sage ps-6">
+            <blockquote className="font-serif text-2xl leading-snug text-charcoal/90 ltr:italic rtl:font-medium md:text-3xl">
               &ldquo;{project.testimonial.quote[locale]}&rdquo;
             </blockquote>
-            <figcaption className="mt-3 font-sans text-xs uppercase tracking-eyebrow text-charcoal/60">
+            <figcaption className="mt-4 font-sans text-xs uppercase tracking-eyebrow text-charcoal/55">
               {project.testimonial.author}
               {project.testimonial.role[locale] ? (
                 <span className="text-charcoal/40">
