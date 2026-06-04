@@ -47,7 +47,7 @@ export default function Manifesto() {
           </span>
           <span className="mt-2 block overflow-hidden pb-[0.05em]">
             <motion.span
-              className="block italic text-sage"
+              className="block text-sage ltr:italic rtl:font-medium"
               initial={{ y: '110%' }}
               animate={inView ? { y: '0%' } : {}}
               transition={{ duration: 1, ease: EASE, delay: 0.22 }}

@@ -278,7 +278,7 @@ function CaseStudyBody({
 
       {project.testimonial && (
         <figure className="border-t border-charcoal/10 pt-6">
-          <blockquote className="font-serif text-xl italic leading-snug text-sage md:text-2xl">
+          <blockquote className="font-serif text-xl leading-snug text-sage ltr:italic rtl:font-medium md:text-2xl">
             &ldquo;{project.testimonial.quote[locale]}&rdquo;
           </blockquote>
           <figcaption className="mt-3 font-sans text-xs uppercase tracking-eyebrow text-charcoal/60">

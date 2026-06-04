@@ -38,7 +38,7 @@ export default function IntroCurtain() {
             <p className="font-serif text-5xl font-light text-sand md:text-7xl">
               Muneeb
             </p>
-            <p className="mt-3 font-serif text-lg italic text-sage md:text-xl">
+            <p className="mt-3 font-serif text-lg text-sage ltr:italic rtl:font-medium md:text-xl">
               I don&rsquo;t own them. I make them work.
             </p>
           </motion.div>

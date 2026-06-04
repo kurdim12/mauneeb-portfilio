@@ -6,6 +6,7 @@ import ExtractionMeter from '@/components/ExtractionMeter';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
+import TrustStrip from '@/components/TrustStrip';
 import Marquee from '@/components/Marquee';
 import Manifesto from '@/components/Manifesto';
 import Work from '@/components/Work';
@@ -33,6 +34,7 @@ export default async function Home({
       <main>
         <Hero />
         <Stats />
+        <TrustStrip />
         <Manifesto />
         <Marquee />
         <Work />

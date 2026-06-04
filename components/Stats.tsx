@@ -53,8 +53,8 @@ export default function Stats() {
 
         {/* Right meta */}
         <Reveal delay={0.2} className="col-span-12 md:col-span-3 md:text-right">
-          <p className="font-serif text-4xl font-light italic text-sage md:text-5xl">
-            #1
+          <p className="font-serif text-4xl font-light text-sage ltr:italic rtl:font-medium md:text-5xl">
+            <span dir="ltr">#1</span>
           </p>
           <p className="mt-2 font-sans text-[11px] uppercase tracking-eyebrow text-charcoal/50">
             {t('rank')}

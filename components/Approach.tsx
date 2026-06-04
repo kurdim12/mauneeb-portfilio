@@ -48,8 +48,13 @@ export default function Approach() {
             <SectionTag index={2} label={t('eyebrow')} />
             <h2 className="mt-8 font-serif text-h2 font-light text-charcoal">
               {t('title')}{' '}
-              <span className="italic text-sage">{t('title_accent')}</span>
+              <span className="text-sage ltr:italic rtl:font-medium">
+                {t('title_accent')}
+              </span>
             </h2>
+            <p className="mt-3 font-sans text-xs uppercase tracking-eyebrow text-sage">
+              {t('method_name')}
+            </p>
             <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/65">
               {t('intro')}
             </p>
@@ -126,7 +131,7 @@ export default function Approach() {
               <AnimatePresence mode="wait">
                 <motion.h3
                   key={`t-${active}`}
-                  className="relative px-6 text-center font-serif font-light italic text-sage"
+                  className="relative px-6 text-center font-serif font-light text-sage ltr:italic rtl:font-medium"
                   style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}

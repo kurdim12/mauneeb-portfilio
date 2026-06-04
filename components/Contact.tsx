@@ -65,7 +65,10 @@ export default function Contact() {
                   className="group -mx-4 flex items-baseline justify-between gap-4 px-4 py-6 transition-colors duration-300 hover:bg-deep-olive"
                 >
                   <span className="eyebrow text-sage">{ch.label}</span>
-                  <span className="font-serif text-xl font-light text-sand transition-opacity group-hover:opacity-90">
+                  <span
+                    dir="ltr"
+                    className="font-serif text-xl font-light text-sand transition-opacity group-hover:opacity-90"
+                  >
                     {ch.value}
                   </span>
                 </a>

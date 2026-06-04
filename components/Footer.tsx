@@ -28,7 +28,7 @@ export default function Footer() {
           >
             Munee<span className="italic font-light text-sage">b</span>
           </p>
-          <p className="mt-6 font-serif text-xl italic text-sage md:text-2xl">
+          <p className="mt-6 font-serif text-xl text-sage ltr:italic rtl:font-medium md:text-2xl">
             {t('tagline')}
           </p>
         </div>
@@ -63,7 +63,8 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-sand/70 transition-colors hover:text-sand"
                 >
-                  WhatsApp · {contact.whatsapp}
+                  WhatsApp ·{' '}
+                  <span dir="ltr">{contact.whatsapp}</span>
                 </a>
               </li>
               <li>
@@ -73,13 +74,15 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-sand/70 transition-colors hover:text-sand"
                 >
-                  Instagram · {contact.instagram}
+                  Instagram ·{' '}
+                  <span dir="ltr">{contact.instagram}</span>
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${contact.email}`}
                   className="text-sand/70 transition-colors hover:text-sand"
+                  dir="ltr"
                 >
                   {contact.email}
                 </a>

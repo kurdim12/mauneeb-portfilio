@@ -53,7 +53,7 @@ function WorkMobile({
         <SectionTag index={1} label={t('eyebrow')} />
         <h2 className="mt-6 font-serif text-h2 font-light text-charcoal">
           {t('title')}{' '}
-          <span className="italic text-sage">{t('title_accent')}</span>
+          <span className="text-sage ltr:italic rtl:font-medium">{t('title_accent')}</span>
         </h2>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-charcoal/70">
           {t('intro')}
@@ -169,7 +169,7 @@ function WorkDesktop({
           <div className="mt-6 grid grid-cols-12 items-baseline gap-8">
             <h2 className="col-span-12 max-w-2xl font-serif text-h2 font-light text-charcoal lg:col-span-7">
               {t('title')}{' '}
-              <span className="italic text-sage">{t('title_accent')}</span>
+              <span className="text-sage ltr:italic rtl:font-medium">{t('title_accent')}</span>
             </h2>
             <p className="col-span-12 max-w-md text-base leading-relaxed text-charcoal/65 lg:col-span-5">
               {t('intro')}

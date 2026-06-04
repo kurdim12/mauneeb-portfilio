@@ -78,7 +78,7 @@ export default function Hero() {
 
           <h1 className="font-serif text-hero font-light text-charcoal">
             <MaskLine delay={0.15}>{t('title_line1')}</MaskLine>
-            <MaskLine delay={0.28} className="italic text-sage">
+            <MaskLine delay={0.28} className="text-sage ltr:italic rtl:font-medium">
               {t('title_line2')}
             </MaskLine>
           </h1>

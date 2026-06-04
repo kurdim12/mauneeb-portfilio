@@ -20,7 +20,7 @@ export default function Craft() {
           <SectionTag index={5} label={t('eyebrow')} tone="dark" />
           <h2 className="mt-8 max-w-3xl font-serif text-h2 font-light text-sand">
             {t('title')}{' '}
-            <span className="italic text-sage">{t('title_accent')}</span>
+            <span className="text-sage ltr:italic rtl:font-medium">{t('title_accent')}</span>
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-sand/70">
             {t('intro')}

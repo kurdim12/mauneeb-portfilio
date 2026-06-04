@@ -34,7 +34,7 @@ export default function About() {
             <div className="mt-8 space-y-5 text-base leading-relaxed text-charcoal/75">
               <p>{t('p1')}</p>
               <p>{t('p2')}</p>
-              <p className="font-serif text-xl italic leading-relaxed text-sage md:text-2xl">
+              <p className="font-serif text-xl leading-relaxed text-sage ltr:italic rtl:font-medium md:text-2xl">
                 {t('p3')}
               </p>
             </div>

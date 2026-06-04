@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import LangToggle from './LangToggle';
 import Wordmark from './Wordmark';
+import { contact } from '@/src/data/content';
 
 const links = [
   { id: 'work', key: 'work' },
@@ -89,7 +90,15 @@ export default function Nav() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 md:gap-4">
+          <a
+            href={`${contact.whatsappUrl}?text=${encodeURIComponent(t('cta_message'))}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden bg-charcoal px-4 py-2 font-sans text-xs text-bone transition-opacity hover:opacity-85 md:inline-block"
+          >
+            {t('cta')}
+          </a>
           <LangToggle />
           <button
             onClick={() => setOpen((v) => !v)}
@@ -131,7 +140,7 @@ export default function Nav() {
                   key={link.id}
                   href={`#${link.id}`}
                   onClick={() => setOpen(false)}
-                  className="border-b border-charcoal/10 py-4 font-serif text-2xl font-light text-charcoal last:border-b-0"
+                  className="border-b border-charcoal/10 py-4 font-serif text-2xl font-light text-charcoal"
                   initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.08 + i * 0.05, ease: EASE }}
@@ -139,6 +148,18 @@ export default function Nav() {
                   {t(link.key)}
                 </motion.a>
               ))}
+              <motion.a
+                href={`${contact.whatsappUrl}?text=${encodeURIComponent(t('cta_message'))}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="mt-4 inline-flex items-center justify-center bg-charcoal px-6 py-4 font-sans text-sm text-bone"
+                initial={{ opacity: 0, x: 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.08 + links.length * 0.05, ease: EASE }}
+              >
+                {t('cta')}
+              </motion.a>
             </div>
           </motion.div>
         )}
