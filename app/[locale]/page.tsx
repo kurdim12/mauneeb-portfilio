@@ -15,7 +15,9 @@ import FieldNotes from '@/components/FieldNotes';
 import Teaching from '@/components/Teaching';
 import About from '@/components/About';
 import Craft from '@/components/Craft';
+import RecipeStrip from '@/components/RecipeStrip';
 import Store from '@/components/Store';
+import BarClock from '@/components/BarClock';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -44,7 +46,9 @@ export default async function Home({
         <Teaching />
         <About />
         <Craft />
+        <RecipeStrip />
         <Store />
+        <BarClock />
         <Contact />
       </main>
       <Footer />

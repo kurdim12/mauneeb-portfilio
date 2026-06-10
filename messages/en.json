@@ -55,6 +55,27 @@
     "next": "Next photo",
     "close": "Close"
   },
+  "recipe": {
+    "eyebrow": "The standard I train to",
+    "dose": "Dose in",
+    "yield": "Yield out",
+    "time": "Extraction",
+    "temp": "Brew water"
+  },
+  "barclock": {
+    "eyebrow": "A build day · live",
+    "title": "Where the day goes.",
+    "tz": "Amman · UTC+3",
+    "now": "Now",
+    "dialin": "First dial-in",
+    "bar": "At the bar — service",
+    "visits": "Site visits & replies",
+    "training": "Team training",
+    "quiet": "Quiet hours"
+  },
+  "marquee": {
+    "craft": "Espresso · Dial-in · Bar flow · Menu · Training · Opening day"
+  },
   "notebook": {
     "eyebrow": "From the notebook · 2026",
     "body": "Most rooms don't fail at opening. They fail in the second month — when the new team forgets the dial, when the menu starts sliding toward 'whatever sells fastest.' My job is to make the room hard to forget itself — so the standard holds when I'm not there.",

@@ -346,6 +346,15 @@ export const stats = {
   institutions: 3,
 };
 
+// Muneeb's house espresso recipe — the standard he trains every team to.
+// TODO(owner): confirm or adjust these numbers to the real house recipe.
+export const houseRecipe = {
+  dose: '18g',
+  yield: '36g',
+  time: '27s',
+  temp: '93.5°',
+};
+
 export const contact = {
   email: 'hello@muneeb.coffee',
   whatsapp: '+962 7 8976 7641',

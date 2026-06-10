@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Media from './Media';
@@ -41,6 +41,22 @@ export default function Hero() {
   });
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  // Live Amman clock (UTC+3 year-round)
+  const [ammanTime, setAmmanTime] = useState<string | null>(null);
+  useEffect(() => {
+    const tick = () => {
+      const d = new Date();
+      const h = (d.getUTCHours() + 3) % 24;
+      const m = d.getUTCMinutes();
+      setAmmanTime(
+        `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
+      );
+    };
+    tick();
+    const id = setInterval(tick, 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section
@@ -120,12 +136,20 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="md:col-span-5"
+          className="pb-3 md:col-span-5 ltr:pr-3 rtl:pl-3"
           initial={{ clipPath: 'inset(100% 0 0 0)' }}
           animate={{ clipPath: 'inset(0% 0 0 0)' }}
           transition={{ duration: 1.2, ease: EASE, delay: 0.35 }}
         >
-          <motion.div style={{ y: imageY }} className="aspect-[4/5] w-full">
+          <motion.div
+            style={{ y: imageY }}
+            className="relative aspect-[4/5] w-full"
+          >
+            {/* Offset editorial frame */}
+            <div
+              aria-hidden
+              className="absolute inset-0 translate-y-3 border border-sage/50 ltr:translate-x-3 rtl:-translate-x-3"
+            />
             <Media
               src="/images/hero.jpg"
               alt="Muneeb behind the bar"
@@ -133,7 +157,7 @@ export default function Hero() {
               initial="M"
               priority
               sizes="(max-width: 768px) 100vw, 40vw"
-              className="h-full w-full"
+              className="relative h-full w-full"
               imgClassName="object-[20%_center] scale-110"
             />
           </motion.div>
@@ -144,7 +168,16 @@ export default function Hero() {
         style={{ opacity: fade }}
         className="container-x absolute inset-x-0 bottom-8 flex items-center justify-between font-sans text-xs uppercase tracking-eyebrow text-charcoal/45"
       >
-        <span>{t('meta_location')}</span>
+        <span className="flex items-center gap-3">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inset-0 rounded-full bg-sage/70 motion-safe:animate-ping" />
+            <span className="relative h-1.5 w-1.5 rounded-full bg-sage" />
+          </span>
+          <span dir="ltr" className="tabular-nums">
+            {ammanTime ?? '··:··'}
+          </span>
+          <span>{t('meta_location')}</span>
+        </span>
         <span className="hidden items-center gap-2 sm:flex">
           <span className="h-8 w-px bg-charcoal/20" />
           {t('meta_availability')}
