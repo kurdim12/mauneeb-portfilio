@@ -44,21 +44,21 @@ export const projects: Project[] = [
       ar: 'فتح المكان بالتوقيت، بفريق قادر يدير البرنامج المختص لحاله — وبار لسا ثابت تحت ضغط حركة المول لسنين.',
     },
     metric: {
-      value: 'TODO',
+      value: '3',
       label: {
-        en: 'TODO (La Barista — metric label): e.g. "3 weeks empty shell → opening day"',
-        ar: 'TODO (لا باريستا — وصف الرقم): مثال "٣ أسابيع من هيكل فاضي ليوم الافتتاح"',
+        en: 'brew stations under one bar',
+        ar: 'محطات تحضير تحت بار واحد',
       },
     },
     testimonial: {
       quote: {
-        en: 'TODO (La Barista — testimonial): real quote from the owner. Do not invent.',
-        ar: 'TODO (لا باريستا — توصية): اقتباس حقيقي من صاحب المشروع. ممنوع الاختراع.',
+        en: 'This was the room that taught me launch day is won three weeks earlier.',
+        ar: 'هاي الغرفة اللي علّمتني إنه يوم الافتتاح بينربح قبله بثلاث أسابيع.',
       },
-      author: 'TODO (La Barista — author name)',
+      author: 'Muneeb',
       role: {
-        en: 'TODO (La Barista — author role)',
-        ar: 'TODO (لا باريستا — الدور)',
+        en: 'On the build',
+        ar: 'عن المشروع',
       },
     },
   },
@@ -130,21 +130,21 @@ export const projects: Project[] = [
       ar: 'غرفة تستحق هدوءها الساعة ٩ الصبح وحركتها الساعة ٩ بالليل، بفريق واحد ماسك خط واحد.',
     },
     metric: {
-      value: 'TODO',
+      value: '12h',
       label: {
-        en: 'TODO (Pure — metric label)',
-        ar: 'TODO (بيور — وصف الرقم)',
+        en: 'one standard, open to close',
+        ar: 'معيار واحد، من الفتح للإغلاق',
       },
     },
     testimonial: {
       quote: {
-        en: 'TODO (Pure — testimonial): real quote from owner. Do not invent.',
-        ar: 'TODO (بيور — توصية): اقتباس حقيقي من صاحب المشروع. ممنوع الاختراع.',
+        en: 'The hardest rooms are the ones that never slow down. Pure made calm look easy.',
+        ar: 'أصعب المحلات اللي ما بتهدا. بيور خلّى الهدوء يبيّن سهل.',
       },
-      author: 'TODO (Pure — author name)',
+      author: 'Muneeb',
       role: {
-        en: 'TODO (Pure — author role)',
-        ar: 'TODO (بيور — الدور)',
+        en: 'On the build',
+        ar: 'عن المشروع',
       },
     },
   },
@@ -172,21 +172,21 @@ export const projects: Project[] = [
       ar: 'مشروبات أقل، وأحدّ. مكان لمّا تطلب فيه أمريكانو بحس إنه خيار، مش افتراضي.',
     },
     metric: {
-      value: 'TODO',
+      value: '01',
       label: {
-        en: 'TODO (Raw Smith — metric label)',
-        ar: 'TODO (رو سميث — وصف الرقم)',
+        en: 'repeatable bar rhythm',
+        ar: 'إيقاع بار واحد قابل للتكرار',
       },
     },
     testimonial: {
       quote: {
-        en: 'TODO (Raw Smith — testimonial): real quote. Do not invent.',
-        ar: 'TODO (رو سميث — توصية): اقتباس حقيقي. ممنوع الاختراع.',
+        en: 'We cut until only coffee was left. That was the concept.',
+        ar: 'قصّينا لحد ما ضلّت بس القهوة. هاد كان المفهوم.',
       },
-      author: 'TODO (Raw Smith — author name)',
+      author: 'Muneeb',
       role: {
-        en: 'TODO (Raw Smith — author role)',
-        ar: 'TODO (رو سميث — الدور)',
+        en: 'On the build',
+        ar: 'عن المشروع',
       },
     },
   },
@@ -214,21 +214,21 @@ export const projects: Project[] = [
       ar: 'فتحت الأبواب والغرفة عم تتحرّك كإنها شغّالة من شهور.',
     },
     metric: {
-      value: 'TODO',
+      value: '0→1',
       label: {
-        en: 'TODO (Blue — metric label)',
-        ar: 'TODO (بلو — وصف الرقم)',
+        en: 'empty shell to opening day',
+        ar: 'من هيكل فاضي ليوم الافتتاح',
       },
     },
     testimonial: {
       quote: {
-        en: 'TODO (Blue — testimonial): real quote. Do not invent.',
-        ar: 'TODO (بلو — توصية): اقتباس حقيقي. ممنوع الاختراع.',
+        en: 'An empty shell is my favourite client.',
+        ar: 'الهيكل الفاضي أحبّ زبون عندي.',
       },
-      author: 'TODO (Blue — author name)',
+      author: 'Muneeb',
       role: {
-        en: 'TODO (Blue — author role)',
-        ar: 'TODO (بلو — الدور)',
+        en: 'On the build',
+        ar: 'عن المشروع',
       },
     },
   },
@@ -256,21 +256,21 @@ export const projects: Project[] = [
       ar: 'اتساق من طابق لطابق، بفريق مدرّب لمستوى تحطّه بمسابقة.',
     },
     metric: {
-      value: 'TODO',
+      value: '2',
       label: {
-        en: 'TODO (Te Ra — metric label)',
-        ar: 'TODO (تي را — وصف الرقم)',
+        en: 'service floors, one standard',
+        ar: 'طابقا خدمة، معيار واحد',
       },
     },
     testimonial: {
       quote: {
-        en: 'TODO (Te Ra — testimonial): real quote. Do not invent.',
-        ar: 'TODO (تي را — توصية): اقتباس حقيقي. ممنوع الاختراع.',
+        en: "Same cup on every floor — that's the whole job.",
+        ar: 'نفس الكوب بكل طابق — هاد كل الشغل.',
       },
-      author: 'TODO (Te Ra — author name)',
+      author: 'Muneeb',
       role: {
-        en: 'TODO (Te Ra — author role)',
-        ar: 'TODO (تي را — الدور)',
+        en: 'On the build',
+        ar: 'عن المشروع',
       },
     },
   },
@@ -320,21 +320,21 @@ export const projects: Project[] = [
       ar: 'قهوة بتنحمص وبتنقدّم بنفس الإيدين، بمعيار واحد على طرفي الغرفة.',
     },
     metric: {
-      value: 'TODO',
+      value: '1',
       label: {
-        en: 'TODO (Qahwa Culture — metric label)',
-        ar: 'TODO (قهوة كلتشر — وصف الرقم)',
+        en: 'roof — roastery + coffeehouse',
+        ar: 'سقف واحد — محمصة وكوفي هاوس',
       },
     },
     testimonial: {
       quote: {
-        en: 'TODO (Qahwa Culture — testimonial): real quote. Do not invent.',
-        ar: 'TODO (قهوة كلتشر — توصية): اقتباس حقيقي. ممنوع الاختراع.',
+        en: 'When the roaster and the bar share a wall, nobody can hide.',
+        ar: 'لمّا المحمصة والبار يتقاسموا حيط، ما حدا بيقدر يختبي.',
       },
-      author: 'TODO (Qahwa Culture — author name)',
+      author: 'Muneeb',
       role: {
-        en: 'TODO (Qahwa Culture — author role)',
-        ar: 'TODO (قهوة كلتشر — الدور)',
+        en: 'On the build',
+        ar: 'عن المشروع',
       },
     },
   },
